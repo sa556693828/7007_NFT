@@ -1,8 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Matter from 'matter-js';
 
 const PhysicsSimulation = () => {
+    console.log('PhysicsSimulation');
+    const renderRef = useRef();
     useEffect(() => {
+        console.log('useEffect');
         if (typeof window !== 'undefined') {
             import('p5').then(({ default: p5 }) => {
                 const sketch = (p) => {
@@ -11,7 +14,7 @@ const PhysicsSimulation = () => {
                     let mouseConstraint;
 
                     p.setup = () => {
-                        p.createCanvas(600, 600);
+                        p.createCanvas(600, 600).parent(renderRef.current);
                         p.background(255);
                         let { Engine, Bodies, World, Mouse, MouseConstraint } = Matter;
                         let boxA = Bodies.rectangle(300, 800, 40, 40);
@@ -86,9 +89,8 @@ const PhysicsSimulation = () => {
                 new p5(sketch);
             });
         }
-    }, []);
-
-    return <div id="physics-simulation" />;
+    }, [])
+    return <div ref={renderRef} />
 };
 
 export default PhysicsSimulation;

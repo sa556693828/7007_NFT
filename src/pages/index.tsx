@@ -1,15 +1,9 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import PhysicsSimulation from "@/components/PhysicsSimulation";
-
-const inter = Inter({ subsets: ["latin"] });
+import Landing from "@/components/landing";
 
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <PhysicsSimulation />
+    <main className="flex h-full flex-col">
+      <Landing />
     </main>
   );
 }
