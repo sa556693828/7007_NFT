@@ -36,7 +36,9 @@ export default function Landing() {
         <Image src={logo.src} alt="title" width={45} height={89} />
         <div className="flex flex-col text-right gap-[30px]">
           {menuList.map((menu) => (
-            <a className="font-bold">{menu.name}</a>
+            <a className="font-bold" key={menu.name}>
+              {menu.name}
+            </a>
           ))}
         </div>
         <div className="flex flex-col text-right gap-[18px]">
