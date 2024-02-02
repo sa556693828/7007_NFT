@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/M_logo.svg";
 import { LuMenu } from "react-icons/lu";
-import { RxCross2 } from "react-icons/rx";
+import { RxCross2, RxDownload } from "react-icons/rx";
+import { footerList } from "@/constants/menuList";
 
 interface Props {
   urlPath: string;
@@ -29,26 +30,16 @@ export default function Mobile({ urlPath }: Props) {
         />
       )}
       <div
-        className={`fixed right-0 top-0 z-20 h-full w-full bg-black opacity-70 pl-4 text-white transition-all duration-300 ease-linear ${
+        className={`fixed right-0 top-0 z-30 h-full w-full bg-black/70 flex justify-center px-10 pt-[120px] text-white transition-all duration-200 ease-linear ${
           showMenu ? "" : "translate-x-full"
         }`}
       >
-        <div className="flex h-full max-w-[220px] flex-col gap-8 uppercase">
-          <a className="text-sm leading-[140%] tracking-[.84px]">About us</a>
-          <a className="text-sm leading-[140%] tracking-[.84px]">
-            our collection
-          </a>
-          <div className="h-[1px] w-[220px] bg-bakoW opacity-40" />
-          {/* {Object.entries(profilePath).map(([path, url]) => (
-            <a
-              key={path}
-              className={`${
-                url === "/" ? "opacity-40" : ""
-              } text-sm leading-[140%] tracking-[.84px]`}
-            >
-              {path}
+        <div className="flex h-full w-fit flex-col gap-[18px]">
+          {footerList.map((item, index) => (
+            <a key={index} className="text-2xl leading-[150%] uppercase">
+              {item.name}
             </a>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>

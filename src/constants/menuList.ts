@@ -1,11 +1,18 @@
 export const menuList = [
-  { id: "HOME", name: "About", path: "/" },
-  { id: "nft-free-mint", name: "Products", path: "/nft-free-mint" },
-  {
-    id: "nft-marketplace",
-    name: "imo",
-    path: "/nft-marketplace",
-  },
-  { id: "faucet", name: "Team", path: "/faucet" },
-  { id: "swap", name: "Partner", path: "/swap" },
+  { id: "About", name: "About" },
+  { id: "Products", name: "Products" },
+  { id: "imo", name: "imo" },
+  { id: "Team", name: "Team" },
+  { id: "Partner", name: "Partner" },
+];
+export const footerList = [
+  { id: "About", name: "🚀 ai marketplace" },
+  { id: "Products", name: "🌏 x" },
+  { id: "imo", name: "👾 discord" },
+  { id: "Team", name: "🗿 contact" },
+  { id: "Partner", name: "⛽ smart contract" },
+  { id: "Partner", name: "🩻 white paper" },
+  { id: "Partner", name: "🐳 about" },
+  { id: "Partner", name: "🌵 products" },
+  { id: "Partner", name: "⛲ imo" },
 ];

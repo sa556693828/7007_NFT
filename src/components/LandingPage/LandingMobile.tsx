@@ -4,9 +4,6 @@ import tg from "@/assets/telegram.svg";
 import x from "@/assets/x.svg";
 import arrow from "@/assets/button_arrow.png";
 import Image from "next/image";
-import { BsChevronLeft } from "react-icons/bs";
-import { menuList } from "@/constants/menuList";
-import { FaCircleArrowRight } from "react-icons/fa6";
 
 interface Props {
   content: string;
@@ -27,8 +24,8 @@ export default function LandingMobile({ content }: Props) {
           </button>
         </div>
       </div>
-      <div className="w-full flex justify-end absolute right-5 bottom-[50px]">
-        <div className="flex flex-col text-right gap-[18px]">
+      <div className="w-full flex justify-end absolute right-5 bottom-[50px] z-50">
+        <div className="flex flex-col text-right gap-[18px] z-50">
           <Image src={tg.src} alt="discord" width={45} height={45} />
           <Image src={x.src} alt="discord" width={45} height={45} />
         </div>
