@@ -1,9 +1,9 @@
-import Landing from "@/components/landing";
+import Landing from "@/components/LandingPage";
 
 export default function Home() {
   return (
-    <main className="flex h-full flex-col">
+    <>
       <Landing />
-    </main>
+    </>
   );
 }
