@@ -1,7 +1,5 @@
 import React from "react";
 import title from "@/assets/7007_title.svg";
-import tg from "@/assets/telegram.svg";
-import x from "@/assets/x.svg";
 import arrow from "@/assets/button_arrow.png";
 import Image from "next/image";
 
@@ -22,12 +20,6 @@ export default function LandingMobile({ content }: Props) {
             <a className="text-lg leading-6">launch app</a>
             <Image src={arrow.src} alt="title" width={21} height={21} />
           </button>
-        </div>
-      </div>
-      <div className="w-full flex justify-end absolute right-5 bottom-[50px] z-50">
-        <div className="flex flex-col text-right gap-[18px] z-50">
-          <Image src={tg.src} alt="discord" width={45} height={45} />
-          <Image src={x.src} alt="discord" width={45} height={45} />
         </div>
       </div>
     </div>
