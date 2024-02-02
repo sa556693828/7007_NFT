@@ -11,9 +11,9 @@ interface Props {
 
 export default function LandingMobile({ content }: Props) {
   return (
-    <div className="flex-col lg:hidden flex items-center h-[100dvh] relative overflow-hidden z-20">
-      <div className="flex flex-col gap-6 w-2/3 absolute top-[27%]">
-        <Image src={title.src} alt="title" width={576} height={128} />
+    <div className="flex-col lg:hidden flex items-center h-[100dvh] relative overflow-hidden z-20 transition-all">
+      <div className="flex flex-col gap-6 w-full items-center absolute top-[27%]">
+        <Image src={title.src} alt="title" width={246} height={51} />
         <div className="flex flex-col gap-6">
           <a className="max-w-[248px] whitespace-pre font-normal text-xs leading-[150%]">
             {content}
