@@ -46,7 +46,7 @@ export default function Mobile({ urlPath }: Props) {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-end fixed right-5 bottom-[50px] z-50">
+      <div className="w-full flex justify-end fixed right-5 bottom-[50px] z-50 lg:hidden">
         <div className="flex flex-col text-right gap-[18px] z-50">
           <Image src={tg.src} alt="discord" width={45} height={45} />
           <Image src={x.src} alt="discord" width={45} height={45} />
