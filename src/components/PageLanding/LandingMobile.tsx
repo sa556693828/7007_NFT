@@ -1,7 +1,7 @@
 import React from "react";
 import title from "@/assets/7007_title.svg";
-import arrow from "@/assets/button_arrow.png";
 import Image from "next/image";
+import LaunchButton from "../Button/LaunchButton";
 
 interface Props {
   content: string;
@@ -9,17 +9,14 @@ interface Props {
 
 export default function LandingMobile({ content }: Props) {
   return (
-    <div className="flex-col lg:hidden flex items-center h-[100dvh] relative overflow-hidden z-20 transition-all">
-      <div className="flex flex-col gap-6 w-full items-center absolute top-[27%]">
+    <div className="relative z-20 flex h-[100dvh] flex-col items-center overflow-hidden transition-all lg:hidden">
+      <div className="absolute top-[27%] flex w-full flex-col items-center gap-6">
         <Image src={title.src} alt="title" width={246} height={51} />
         <div className="flex flex-col gap-6">
-          <a className="max-w-[248px] whitespace-pre font-normal text-xs leading-[150%]">
+          <a className="max-w-[248px] whitespace-pre text-xs font-normal leading-[150%]">
             {content}
           </a>
-          <button className="flex w-fit items-center gap-[6px] bg-white text-black h-[22px] px-2">
-            <a className="text-lg leading-6">launch app</a>
-            <Image src={arrow.src} alt="title" width={21} height={21} />
-          </button>
+          <LaunchButton title="launch app" />
         </div>
       </div>
     </div>

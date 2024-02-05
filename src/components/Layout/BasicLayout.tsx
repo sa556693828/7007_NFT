@@ -19,7 +19,7 @@ export default function BaseLayout({
   return (
     <>
       <Header urlPath={urlPath} />
-      <main className="max-w-[100vw] min-h-[100dvh]">{children}</main>
+      <main className="min-h-[100dvh] max-w-[100vw]">{children}</main>
       {/* <Footer urlPath={urlPath} /> */}
     </>
   );

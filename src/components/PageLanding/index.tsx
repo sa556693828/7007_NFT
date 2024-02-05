@@ -8,19 +8,19 @@ export default function Landing() {
   const text = `Revolutionizing AI\nwith transparent,\non-chain model publishing\nand creator compensation.`;
 
   return (
-    <>
+    <div className="relative overflow-hidden">
       <LandingDesktop content={text} />
       <LandingMobile content={text} />
       <img
         src={landing.src}
         alt="landing"
-        className="absolute md:-bottom-10 z-0 lg:-bottom-20 left-0 w-full hidden md:block"
+        className="absolute left-0 z-0 hidden w-full md:-bottom-10 md:block lg:-bottom-20"
       />
       <img
         src={landingM.src}
         alt="landingM"
-        className="object-cover h-3/5 absolute -bottom-36 left-0 scale-100 block md:hidden z-0"
+        className="absolute -bottom-36 left-0 z-0 block h-3/5 scale-100 object-cover md:hidden"
       />
-    </>
+    </div>
   );
 }
