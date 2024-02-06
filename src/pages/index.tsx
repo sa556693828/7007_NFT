@@ -11,11 +11,11 @@ export default function Home() {
   return (
     <>
       <Landing />
-      {/* <Create /> */}
-      {/* <Asset /> */}
-      {/* <Text /> */}
-      {/* <Grid /> */}
-      {/* <IMO /> */}
+      <Create />
+      <Asset />
+      <Text />
+      <Grid />
+      <IMO />
       <Team />
       <Sign />
     </>

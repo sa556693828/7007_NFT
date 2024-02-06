@@ -15,7 +15,7 @@ export default function Team() {
 
   return (
     <>
-      <div className="z-20 flex h-full min-h-screen w-full px-10 pb-[8%] pt-[150px] lg:gap-[12%] lg:pl-[14%] lg:pt-[180px]">
+      <div className="z-20 flex h-full min-h-[100dvh] w-full px-10 pb-[8%] pt-[150px] lg:gap-[12%] lg:pl-[14%] lg:pt-[180px]">
         <div className="flex w-full flex-col lg:w-fit lg:gap-[100px]">
           <div className="flex flex-col gap-6 lg:gap-[45px]">
             <a className="text-[45px] font-bold leading-none lg:max-w-full lg:text-[60px]">

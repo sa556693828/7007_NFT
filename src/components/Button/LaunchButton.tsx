@@ -11,7 +11,7 @@ export default function LaunchButton({ classname, title }: Prop) {
     <button
       className={`flex h-[22px] items-center gap-[6px] bg-white px-2 text-black ${classname}`}
     >
-      <a className="text-lg leading-6">{title}</a>
+      <a className="text-xs leading-6 lg:text-lg">{title}</a>
       <Image src={arrow.src} alt="title" width={21} height={21} />
     </button>
   );

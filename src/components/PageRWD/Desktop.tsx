@@ -10,7 +10,7 @@ interface Props {
 
 export default function Desktop({ title, content }: Props) {
   return (
-    <div className="z-20 hidden min-h-screen w-full flex-col items-center justify-center text-white lg:flex">
+    <div className="z-20 hidden min-h-[100dvh] w-full flex-col items-center justify-center text-white lg:flex">
       <a className="max-w-xs text-[45px] font-bold lg:max-w-full lg:text-[60px]">
         {title}
       </a>

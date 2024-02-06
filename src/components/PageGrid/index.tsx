@@ -9,10 +9,17 @@ export default function Grid() {
       <div className="z-20 flex min-h-fit w-full flex-col items-center justify-center">
         <Image
           src={small}
-          alt="black"
+          alt="small"
           width={1440}
           height={900}
-          className="h-full w-full object-contain"
+          className="hidden h-full w-full object-contain lg:block"
+        />
+        <Image
+          src={M_small}
+          alt="M_small"
+          width={1440}
+          height={900}
+          className="block h-full w-full object-contain lg:hidden"
         />
       </div>
     </>

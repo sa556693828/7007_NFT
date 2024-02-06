@@ -2,6 +2,7 @@ import React from "react";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
 import createFull from "@/assets/PageCreate/createFull.svg";
+import M_createFull from "@/assets/PageCreate/M_createFull.svg";
 import ai from "@/assets/PageCreate/ai.svg";
 import art from "@/assets/PageCreate/art.svg";
 import creat from "@/assets/PageCreate/creat.svg";
@@ -18,7 +19,7 @@ export default function Create() {
 
   return (
     <>
-      <div className="relative z-20 flex min-h-screen w-full flex-col items-center justify-center bg-bgGrey text-white">
+      <div className="relative z-20 flex min-h-[100dvh] w-full flex-col items-center justify-center bg-bgGrey text-white">
         <a className="max-w-xs text-center text-[45px] font-bold lg:max-w-full lg:text-[60px]">
           {title}
         </a>
@@ -30,7 +31,14 @@ export default function Create() {
           alt="createFull"
           width={1200}
           height={600}
-          className="absolute top-[55.5%] -translate-y-[55.5%]"
+          className="absolute top-[55.5%] hidden -translate-y-[55.5%] lg:block"
+        />
+        <Image
+          src={M_createFull}
+          alt="createFull"
+          width={448}
+          height={368}
+          className="absolute top-[45%] block -translate-y-[45%] lg:hidden"
         />
       </div>
     </>

@@ -9,18 +9,41 @@ import color from "@/assets/PageAsset/color.svg";
 
 export default function Asset() {
   const title = `New asset\nclass : AI Models`;
+  const mobileTitle = `New asset\nclass :\nAI Models`;
 
   return (
     <>
-      <div className="z-20 flex h-fit min-h-screen w-full flex-col items-start pl-[14%] pt-[200px] text-white">
-        <div className="relative max-w-[781px] items-start whitespace-pre-wrap">
-          <a className="text-[45px] font-bold leading-none lg:text-[60px]">
+      <div className="z-20 flex h-fit min-h-[100dvh] w-full flex-col items-start pl-10 pt-[210px] text-white lg:pl-[14%] lg:pt-[200px]">
+        <div className="relative flex max-w-[781px] items-start whitespace-pre-wrap">
+          <a className="hidden text-[60px] font-bold leading-none lg:block">
             {title}
           </a>
-          <LaunchButton classname="absolute right-0 top-0" title="CONTACT US" />
+          <a className="text-[36px] font-bold leading-none lg:hidden">
+            {mobileTitle}
+          </a>
+          <LaunchButton
+            classname="absolute right-0 top-0 hidden lg:flex"
+            title="CONTACT US"
+          />
         </div>
-
-        <div className="relative mt-[50px] w-full">
+        <div className="relative mb-[60px] mt-[18px] flex w-full lg:hidden">
+          <Image
+            src={color}
+            width={283}
+            height={125}
+            alt="colorPart"
+            className="img"
+          />
+          <Image
+            src={black}
+            width={310}
+            height={72}
+            alt="blackPart"
+            className="absolute left-0 top-[26.32px]"
+          />
+        </div>
+        <LaunchButton classname="lg:hidden" title="CONTACT US" />
+        <div className="relative mt-[50px] hidden w-full lg:flex">
           <Image
             src={color}
             width={647}
