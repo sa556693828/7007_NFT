@@ -21,7 +21,7 @@ export const teamMember = [
   { id: "CTO", name: "🧚 CTO", color: "#FFF" },
   { id: "CFO", name: "👾 CFO", color: "#8550F6" },
   { id: "research", name: "🧿 ai research", color: "#2B8BFC" },
-  { id: "research", name: "🔮 ai research", color: "#F97ACE" },
+  { id: "research2", name: "🔮 ai research", color: "#F97ACE" },
   { id: "engineer", name: "🐬 engineer", color: "#0FE5F2" },
   { id: "PM", name: "🦖 PM", color: "#83F04F" },
 ];

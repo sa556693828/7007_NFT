@@ -18,7 +18,7 @@ export default function Footer({ urlPath }: Props) {
   return (
     <footer className="flex w-full bg-bgWhite">
       <Desktop />
-      {/* <Mobile /> */}
+      <Mobile />
     </footer>
   );
 }

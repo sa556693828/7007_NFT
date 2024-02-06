@@ -9,7 +9,7 @@ interface Props {
 
 export default function Desktop({ urlPath }: Props) {
   return (
-    <div className="w-full space-y-[50px] pb-[130px] pl-[90px] pt-[119px] text-black">
+    <div className="hidden w-full flex-col gap-[50px] pb-[130px] pl-[90px] pt-[119px] text-black lg:flex">
       <Image
         src={allText}
         alt="allText"
