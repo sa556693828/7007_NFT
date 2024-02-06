@@ -6,13 +6,22 @@ export const menuList = [
   { id: "Partner", name: "Partner" },
 ];
 export const footerList = [
-  { id: "About", name: "🚀 ai marketplace" },
-  { id: "Products", name: "🌏 x" },
-  { id: "imo", name: "👾 discord" },
-  { id: "Team", name: "🗿 contact" },
-  { id: "Partner", name: "⛽ smart contract" },
-  { id: "Partner", name: "🩻 white paper" },
-  { id: "Partner", name: "🐳 about" },
-  { id: "Partner", name: "🌵 products" },
-  { id: "Partner", name: "⛲ imo" },
+  { id: "MarketPlace", name: "🚀 ai marketplace" },
+  { id: "X", name: "🌏 x" },
+  { id: "Discord", name: "👾 discord" },
+  { id: "Contact", name: "🗿 contact" },
+  { id: "Contract", name: "⛽ smart contract" },
+  { id: "whitePaper", name: "🩻 white paper" },
+  { id: "About", name: "🐳 about" },
+  { id: "Products", name: "🌵 products" },
+  { id: "IMO", name: "⛲ imo" },
+];
+export const teamMember = [
+  { id: "CEO", name: "🐻 CEO", color: "#FF974C" },
+  { id: "CTO", name: "🧚 CTO", color: "#FFF" },
+  { id: "CFO", name: "👾 CFO", color: "#8550F6" },
+  { id: "research", name: "🧿 ai research", color: "#2B8BFC" },
+  { id: "research", name: "🔮 ai research", color: "#F97ACE" },
+  { id: "engineer", name: "🐬 engineer", color: "#0FE5F2" },
+  { id: "PM", name: "🦖 PM", color: "#83F04F" },
 ];

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Header from "../Header/Header";
 // import LoadingPage from "../LoadingPage/LoadingPage";
 //   import Loading from "../../pages/Loading";
-import bg from "@/assets/login/background.png";
 import Footer from "../Footer/Footer";
 
 export default function BaseLayout({
@@ -20,7 +19,7 @@ export default function BaseLayout({
     <>
       <Header urlPath={urlPath} />
       <main className="min-h-[100dvh] max-w-[100vw]">{children}</main>
-      {/* <Footer urlPath={urlPath} /> */}
+      <Footer urlPath={urlPath} />
     </>
   );
 }
