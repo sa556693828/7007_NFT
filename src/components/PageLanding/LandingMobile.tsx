@@ -16,7 +16,7 @@ export default function LandingMobile({ content }: Props) {
           <a className="max-w-[248px] whitespace-pre text-xs font-normal leading-[150%]">
             {content}
           </a>
-          <LaunchButton title="launch app" />
+          <LaunchButton title="launch app" classname="w-fit" />
         </div>
       </div>
     </div>
