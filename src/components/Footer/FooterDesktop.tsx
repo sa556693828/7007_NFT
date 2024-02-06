@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import allText from "@/assets/Footer/allText.png";
-import { menuList } from "@/constants/menuList";
 import Image from "next/image";
 
 interface Props {
@@ -15,7 +14,7 @@ export default function Desktop({ urlPath }: Props) {
         alt="allText"
         width={1168}
         height={268}
-        className="w-4/5"
+        className="w-[80%]"
       />
       <a className="flex text-lg font-bold">
         7007.Studio © All rights reserved.

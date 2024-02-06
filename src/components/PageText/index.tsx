@@ -3,6 +3,7 @@ import black from "@/assets/PageText/black.svg";
 import text from "@/assets/PageText/text.svg";
 import white from "@/assets/PageText/white.svg";
 import M_all from "@/assets/PageText/M_all.svg";
+import all from "@/assets/PageText/all.svg";
 import Image from "next/image";
 
 export default function Text() {
@@ -17,6 +18,13 @@ export default function Text() {
           className="w-4/5 lg:hidden"
         />
         <Image
+          src={all}
+          alt="M_all"
+          width={1080}
+          height={457}
+          className="hidden w-[75%] lg:block"
+        />
+        {/* <Image
           src={black}
           alt="black"
           width={1080}
@@ -36,7 +44,7 @@ export default function Text() {
           width={1080}
           height={337}
           className="absolute bottom-[28.2%] hidden lg:block"
-        />
+        /> */}
       </div>
     </>
   );
