@@ -10,6 +10,26 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#2B8BFC" />
+        <meta property="og:title" content="7007 Studio" />
+        <meta property="og:site_name" content="7007" />
+        <meta
+          property="og:description"
+          content="Revolutionizing AI with transparent,on-chain model publishing and creator compensation."
+        />
+        <meta property="og:url" content="https://www.7007.studio/main.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.7007.studio/main.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="7007.studio" />
+        <meta property="twitter:url" content="https://www.7007.studio/" />
+        <meta name="twitter:title" content="7007 Studio" />
+        <meta
+          name="twitter:description"
+          content="Revolutionizing AI with transparent,on-chain model publishing and creator compensation."
+        />
+        <meta name="twitter:image" content="https://www.7007.studio/main.png" />
       </Head>
       <body>
         <Main />

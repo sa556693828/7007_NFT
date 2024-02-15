@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>My page</title>
+        <title>7007</title>
       </Head>
       <BaseLayout>
         <Component {...pageProps} />
