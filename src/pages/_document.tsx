@@ -10,6 +10,11 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.cdnfonts.com/css/digital-numbers"
+          rel="stylesheet"
+        />
+        <link rel="icon" href="/iconB.png" type="image/x-icon" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#2B8BFC" />
         <meta property="og:title" content="7007 Studio" />

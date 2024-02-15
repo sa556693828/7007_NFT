@@ -38,7 +38,7 @@ export default function Team() {
             </div>
           </div>
           <div className="mb-[100px] mt-[52px] flex w-full flex-col items-center justify-center gap-[25px] lg:hidden">
-            <div
+            {/* <div
               className={`flex h-[270px] w-[270px] items-center justify-center border-2 border-[${
                 team.find((member) => member.id === select)?.color
               }] rounded-[50%]`}
@@ -61,7 +61,7 @@ export default function Team() {
               }] rounded-[65px] py-3`}
             >
               {team.find((member) => member.id === select)?.name.slice(3)}
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col gap-[28px]">
             <a className="text-[45px] font-bold leading-none lg:max-w-full lg:text-[60px]">
@@ -83,7 +83,7 @@ export default function Team() {
             height={112}
             className=""
           />
-          <Image src={zero} alt="zero" width={107} height={112} className="" />{" "}
+          <Image src={zero} alt="zero" width={107} height={112} className="" />
           <Image src={zero} alt="zero" width={107} height={112} className="" />
           <Image
             src={seven}

@@ -19,7 +19,7 @@ export default function BaseLayout({
     <>
       <Header urlPath={urlPath} />
       <main className="min-h-[100dvh] max-w-[100vw]">{children}</main>
-      <Footer urlPath={urlPath} />
+      {urlPath !== "/nft" && <Footer urlPath={urlPath} />}
     </>
   );
 }

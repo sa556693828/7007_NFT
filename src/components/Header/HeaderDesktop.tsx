@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import { BsChevronLeft } from "react-icons/bs";
 import logo from "@/assets/Header/7007.png";
 import tg from "@/assets/Header/telegram.svg";
+import tgH from "@/assets/Header/tgHover.svg";
 import x from "@/assets/Header/x.svg";
+import xH from "@/assets/Header/xHover.svg";
 import { menuList } from "@/constants/menuList";
 import Image from "next/image";
+import { FaTelegramPlane } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface Props {
   urlPath: string;
 }
 
 export default function Desktop({ urlPath }: Props) {
+  const [hoverTG, setHoverTG] = useState(false);
+  const [hoverX, setHoverX] = useState(false);
   return (
     <>
       <BsChevronLeft
@@ -32,8 +38,20 @@ export default function Desktop({ urlPath }: Props) {
           ))}
         </div>
         <div className="flex flex-col gap-[18px] text-right">
-          <Image src={tg.src} alt="discord" width={45} height={45} />
-          <Image src={x.src} alt="discord" width={45} height={45} />
+          <div
+            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full border pt-[2px] ${hoverTG ? "border-buttonGr shadow-buttonG" : "border-white bg-black"} transition-all`}
+            onMouseEnter={() => setHoverTG(true)}
+            onMouseLeave={() => setHoverTG(false)}
+          >
+            <FaTelegramPlane size={23} color={hoverTG ? "#B4FF78" : "white"} />
+          </div>
+          <div
+            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full ${hoverX ? "bg-buttonGr shadow-buttonG" : "border border-white bg-white"} transition-all`}
+            onMouseEnter={() => setHoverX(true)}
+            onMouseLeave={() => setHoverX(false)}
+          >
+            <FaXTwitter size={25} color="black" />
+          </div>
         </div>
       </div>
     </>
