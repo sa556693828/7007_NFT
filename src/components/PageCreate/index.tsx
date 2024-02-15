@@ -19,7 +19,7 @@ export default function Create() {
 
   return (
     <>
-      <div className="relative z-20 flex min-h-[100dvh] w-full flex-col items-center justify-center bg-bgGrey text-white">
+      <div className="relative z-20 flex min-h-[100dvh] w-full flex-col items-center justify-center bg-white dark:bg-bgGrey">
         <a className="max-w-xs text-center text-[45px] font-bold lg:max-w-full lg:text-[60px]">
           {title}
         </a>

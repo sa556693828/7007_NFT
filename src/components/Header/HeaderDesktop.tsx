@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsChevronLeft } from "react-icons/bs";
 import logo from "@/assets/Header/7007.png";
+import logo_W from "@/assets/Header/7007_W.svg";
 import tg from "@/assets/Header/telegram.svg";
 import tgH from "@/assets/Header/tgHover.svg";
 import x from "@/assets/Header/x.svg";
@@ -9,12 +10,14 @@ import { menuList } from "@/constants/menuList";
 import Image from "next/image";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { NFTContext } from "../Provider";
 
 interface Props {
   urlPath: string;
+  darkMode: boolean;
 }
 
-export default function Desktop({ urlPath }: Props) {
+export default function Desktop({ urlPath, darkMode }: Props) {
   const [hoverTG, setHoverTG] = useState(false);
   const [hoverX, setHoverX] = useState(false);
   return (
@@ -22,6 +25,7 @@ export default function Desktop({ urlPath }: Props) {
       <BsChevronLeft
         size="22px"
         className="fixed left-[60px] top-[60px] z-50 hidden rotate-45 lg:flex"
+        color={darkMode ? "white" : "black"}
       />
       <div
         className="fixed right-[60px] top-[60px] z-50 hidden flex-col items-end justify-between lg:flex"
@@ -29,7 +33,11 @@ export default function Desktop({ urlPath }: Props) {
           height: "calc(100% - 160px)",
         }}
       >
-        <Image src={logo.src} alt="title" width={45} height={89} />
+        {darkMode ? (
+          <Image src={logo.src} alt="title" width={45} height={89} />
+        ) : (
+          <Image src={logo_W.src} alt="title" width={45} height={89} />
+        )}
         <div className="flex flex-col gap-[30px] text-right">
           {menuList.map((menu) => (
             <a className="font-bold" key={menu.name}>

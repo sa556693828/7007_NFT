@@ -13,7 +13,7 @@ export default function Asset() {
 
   return (
     <>
-      <div className="z-20 flex h-fit min-h-[100dvh] w-full flex-col items-start pl-10 pt-[210px] text-white lg:pl-[14%] lg:pt-[200px]">
+      <div className="z-20 flex h-fit min-h-[100dvh] w-full flex-col items-start bg-bgWhite pl-10 pt-[210px] lg:pl-[14%] lg:pt-[200px] dark:bg-black">
         <div className="relative flex max-w-[781px] items-start whitespace-pre-wrap">
           <a className="hidden text-[60px] font-bold leading-none lg:block">
             {title}

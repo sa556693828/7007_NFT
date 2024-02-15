@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/Header/M_logo.svg";
+import M_logo_W from "@/assets/Header/M_logo_W.svg";
 import { LuMenu } from "react-icons/lu";
 import { RxCross2, RxDownload } from "react-icons/rx";
 import { footerList } from "@/constants/menuList";
@@ -9,9 +10,10 @@ import { FaXTwitter } from "react-icons/fa6";
 
 interface Props {
   urlPath: string;
+  darkMode: boolean;
 }
 
-export default function Mobile({ urlPath }: Props) {
+export default function Mobile({ urlPath, darkMode }: Props) {
   const [showMenu, setShowMenu] = useState(false);
   const [hoverTG, setHoverTG] = useState(false);
   const [hoverX, setHoverX] = useState(false);
@@ -22,7 +24,23 @@ export default function Mobile({ urlPath }: Props) {
         <div
           className={`${urlPath === "/nft" ? "hidden" : "flex"} w-full items-center justify-between self-stretch`}
         >
-          <Image src={logo} alt="7007" className="z-50" />
+          {darkMode ? (
+            <Image
+              src={logo}
+              alt="7007"
+              className="z-50"
+              width={45}
+              height={45}
+            />
+          ) : (
+            <Image
+              src={M_logo_W.src}
+              alt="7007"
+              className="z-50"
+              width={45}
+              height={45}
+            />
+          )}
           {showMenu ? (
             <RxCross2
               size="40px"
@@ -32,7 +50,7 @@ export default function Mobile({ urlPath }: Props) {
           ) : (
             <LuMenu
               size="40px"
-              color="#FFF"
+              color={darkMode ? "#FFF" : "#000"}
               onClick={() => setShowMenu(true)}
               className="z-50"
             />
@@ -67,7 +85,7 @@ export default function Mobile({ urlPath }: Props) {
             onMouseLeave={() => setHoverX(false)}
           >
             <FaXTwitter size={25} color="black" />
-          </div>{" "}
+          </div>
         </div>
       </div>
     </>
