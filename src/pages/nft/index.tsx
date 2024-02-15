@@ -32,7 +32,7 @@ export default function NFT() {
         </div>
         <Box />
       </div>
-      <div className="font-digital z-50 flex min-h-[100dvh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:p-0">
+      <div className="font-digital z-50 flex min-h-[100dvh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>
         <div className="w-full lg:bg-black/60">
           {question.map((q, index) => (
