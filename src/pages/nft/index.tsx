@@ -28,7 +28,7 @@ export default function NFT() {
           <a className="text-[10px]">Join the AI-Blockchain Revolution</a>
           <a className="text-[60px] -tracking-[9px]">EIP-7007</a>
         </div>
-        <div className="z-20 mb-[35%] flex w-full flex-col items-center gap-4 text-center lg:mb-0 lg:mt-[25%]">
+        <div className="z-20 mb-[35%] flex w-full flex-col items-center gap-4 text-center lg:mb-0 lg:mt-[19.5%]">
           <a className="mb-1">{`[ 6006 / 7007 ]`}</a>
           <MintButton title="MINT" arrow={true} />
           <MintButton title="WHITE LIST MINT" />
