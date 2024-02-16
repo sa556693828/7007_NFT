@@ -16,7 +16,7 @@ export default function Document() {
         />
         <link rel="icon" href="/iconB.png" type="image/x-icon" />
         <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#2B8BFC" />
+        <meta name="theme-color" content="#000" />
         <meta property="og:title" content="7007 Studio" />
         <meta property="og:site_name" content="7007" />
         <meta

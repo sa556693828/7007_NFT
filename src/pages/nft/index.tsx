@@ -23,7 +23,7 @@ export default function NFT() {
       <Head>
         <title>7007 NFT</title>
       </Head>
-      <div className="font-digital over relative z-20 flex min-h-[100dvh] w-full flex-col items-center justify-between overflow-x-hidden bg-black text-white lg:justify-start">
+      <div className="font-digital over relative z-20 flex min-h-[100vh] w-full flex-col items-center justify-between overflow-x-hidden bg-black text-white lg:justify-start">
         <div className="z-20 mt-[60px] flex flex-col text-center">
           <a className="text-[10px]">Join the AI-Blockchain Revolution</a>
           <a className="text-[60px] -tracking-[9px]">EIP-7007</a>
