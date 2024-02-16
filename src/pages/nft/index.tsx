@@ -19,7 +19,7 @@ export default function NFT() {
           <a className="text-[60px] -tracking-[9px]">EIP-7007</a>
         </div>
         <div className="z-20 mb-[42%] flex w-full flex-col items-center gap-4 text-center lg:mb-0 lg:mt-[25%]">
-          <a className="mb-1">{`{ 6006 / 7007 }`}</a>
+          <a className="mb-1">{`[ 6006 / 7007 ]`}</a>
           <MintButton title="MINT" arrow={true} />
           <MintButton title="WHITE LIST MINT" />
           <a className="mt-1">· Mint price:0.007007 ETH ·</a>
