@@ -73,7 +73,7 @@ export default function Mobile({ urlPath, darkMode }: Props) {
       <div className="fixed bottom-[50px] right-5 z-50 flex w-full justify-end lg:hidden">
         <div className="z-50 flex flex-col gap-[18px] text-right">
           <div
-            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full border pt-[2px] ${hoverTG ? "border-buttonGr shadow-buttonG" : "border-white bg-black"} transition-all`}
+            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full border pt-[2px] ${hoverTG ? "border-buttonGr shadow-buttonG" : "border-white"} bg-black transition-all`}
             onMouseEnter={() => setHoverTG(true)}
             onMouseLeave={() => setHoverTG(false)}
           >
