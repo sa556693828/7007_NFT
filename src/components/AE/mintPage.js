@@ -18,14 +18,12 @@ const Box = () => {
                     let clrB = 255;
 
                     p.setup = () => {
-                        const canvasWidth = window.innerWidth * 1;
-                        const canvasHeight = window.innerHeight * 1;
+                        const canvasWidth = window.innerWidth;
+                        const canvasHeight = window.innerHeight;
                         p.createCanvas(canvasWidth, canvasHeight, p.WEBGL).parent(renderRef.current);
                         cols = w / scl;
                         rows = h / scl;
                         window.addEventListener('resize', () => {
-                            const canvasWidth = window.innerWidth * 1;
-                            const canvasHeight = window.innerHeight * 1;
                             p.resizeCanvas(canvasWidth, canvasHeight); // 調整畫布大小
                         });
 
@@ -133,7 +131,7 @@ const Box = () => {
         }
     }, []);
 
-    return <div ref={renderRef} className="absolute top-0 -left-2 z-1" />;
+    return <div ref={renderRef} className="absolute top-0 -left-2 z-1 " />;
 };
 
 export default Box;

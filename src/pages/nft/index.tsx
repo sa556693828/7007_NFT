@@ -28,7 +28,7 @@ export default function NFT() {
           <a className="text-[10px]">Join the AI-Blockchain Revolution</a>
           <a className="text-[60px] -tracking-[9px]">EIP-7007</a>
         </div>
-        <div className="z-20 mb-[42%] flex w-full flex-col items-center gap-4 text-center lg:mb-0 lg:mt-[25%]">
+        <div className="z-20 mb-[35%] flex w-full flex-col items-center gap-4 text-center lg:mb-0 lg:mt-[25%]">
           <a className="mb-1">{`[ 6006 / 7007 ]`}</a>
           <MintButton title="MINT" arrow={true} />
           <MintButton title="WHITE LIST MINT" />
@@ -37,7 +37,7 @@ export default function NFT() {
         </div>
         <Box />
       </div>
-      <div className="font-digital z-50 flex min-h-[100dvh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:p-0">
+      <div className="font-digital z-50 flex min-h-[100vh] w-[360px] flex-col gap-5 bg-black pl-[40px] pt-[50px] text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>
         <div className="w-full lg:bg-black/60">
           {question.map((q: any, index) => (
