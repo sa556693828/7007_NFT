@@ -25,7 +25,7 @@ export default function Desktop({ urlPath, darkMode }: Props) {
       <BsChevronLeft
         size="22px"
         className="fixed left-[60px] top-[60px] z-50 hidden rotate-45 lg:flex"
-        color={darkMode ? "white" : "black"}
+        color={"white"}
       />
       <div
         className="fixed right-[60px] top-[60px] z-50 hidden flex-col items-end justify-between lg:flex"
@@ -33,11 +33,13 @@ export default function Desktop({ urlPath, darkMode }: Props) {
           height: "calc(100% - 160px)",
         }}
       >
-        {darkMode ? (
+        {/* {darkMode ? (
           <Image src={logo.src} alt="title" width={45} height={89} />
         ) : (
           <Image src={logo_W.src} alt="title" width={45} height={89} />
-        )}
+        )} */}
+        <Image src={logo.src} alt="title" width={45} height={89} />
+
         <div className="flex flex-col gap-[30px] text-right">
           {menuList.map((menu) => (
             <a className="font-bold" key={menu.name}>
