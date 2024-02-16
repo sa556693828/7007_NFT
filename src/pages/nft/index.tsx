@@ -1,12 +1,22 @@
 import Head from "next/head";
 import MintButton from "@/components/Button/MintButton";
 import Box from "@/components/AE/mintPage";
+import AccordingQA from "@/components/According/AccordingQA";
 
 export default function NFT() {
+  const [open, setOpen] = [false, () => {}];
   const question = [
-    { q: "Why you should participate in EIP 7007 ?", a: "to be continue" },
-    { q: "What is EIP - 7007 ?", a: "to be continue" },
-    { q: "How to Participate in EIP-7007 boom ?", a: "to be continue" },
+    {
+      question: "Why you should participate in EIP 7007 ?",
+      answer: "to be continue",
+      active: 0,
+    },
+    { question: "What is EIP - 7007 ?", answer: "to be continue", active: 0 },
+    {
+      question: "How to Participate in EIP-7007 boom ?",
+      answer: "to be continue",
+      active: 0,
+    },
   ];
   return (
     <>
@@ -30,13 +40,8 @@ export default function NFT() {
       <div className="font-digital z-50 flex min-h-[100dvh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>
         <div className="w-full lg:bg-black/60">
-          {question.map((q, index) => (
-            <div key={index}>
-              <div className="py-[6px]">
-                <a className="pl-[8px] text-[10px] tracking-tight">{q.q}</a>
-              </div>
-              <div className="h-[1px] w-full bg-white" />
-            </div>
+          {question.map((q: any, index) => (
+            <AccordingQA key={index} data={q} />
           ))}
         </div>
       </div>
