@@ -24,6 +24,8 @@ const Box = () => {
                         cols = w / scl;
                         rows = h / scl;
                         window.addEventListener('resize', () => {
+                            const canvasWidth = window.innerWidth;
+                            const canvasHeight = window.innerHeight;
                             p.resizeCanvas(canvasWidth, canvasHeight); // 調整畫布大小
                         });
 
@@ -128,6 +130,13 @@ const Box = () => {
                 };
                 new p5(sketch);
             })
+        }
+        return () => {
+            window.removeEventListener('resize', () => {
+                const canvasWidth = window.innerWidth;
+                const canvasHeight = window.innerHeight;
+                p.resizeCanvas(canvasWidth, canvasHeight); // 調整畫布大小
+            });
         }
     }, []);
 
