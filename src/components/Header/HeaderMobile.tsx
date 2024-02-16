@@ -22,7 +22,7 @@ export default function Mobile({ urlPath, darkMode }: Props) {
     <>
       <div className="fixed z-50 w-full px-5 pt-5 lg:hidden">
         <div
-          className={`${urlPath === "/nft" ? "hidden" : "flex"} w-full items-center justify-between self-stretch`}
+          className={`hidden w-full items-center justify-between self-stretch`}
         >
           {darkMode ? (
             <Image
