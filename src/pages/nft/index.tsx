@@ -1,5 +1,6 @@
 import Head from "next/head";
 import MintButton from "@/components/Button/MintButton";
+import Box from "@/components/AE/mintPage";
 
 export default function NFT() {
   const question = [
@@ -24,7 +25,7 @@ export default function NFT() {
           <a className="mt-1">· Mint price:0.007007 ETH ·</a>
           <a>each wallet can only Mint 1</a>
         </div>
-        {/* <Box /> */}
+        <Box />
       </div>
       <div className="font-digital z-50 flex min-h-[100dvh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>
