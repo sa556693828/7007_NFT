@@ -20,6 +20,9 @@ module.exports = {
       fontFamily: {
         digital: ["Digital Numbers", "sans-serif"],
       },
+      dropShadow: {
+        circle: "0px 0px 15px #FFF",
+      },
       backgroundImage: {
         buttonW: "linear-gradient(180deg, #FFF 0%, rgba(0, 0, 0, 0.80) 27.5%, rgba(0, 0, 0, 0.60) 76.5%, #FFF 100%)",
         buttonG: "linear-gradient(180deg, #B4FF78 0%, rgba(0, 0, 0, 0.80) 27.5%, rgba(0, 0, 0, 0.60) 76.5%, #B4FF78 100%)"
