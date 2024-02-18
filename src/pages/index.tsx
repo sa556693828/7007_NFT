@@ -64,7 +64,7 @@ export default function NFT() {
           <a className="mb-1">{`[ 6006 / 7007 ]`}</a>
           <MintButton title="MINT" arrow={true} />
           <MintButton title="WHITE LIST MINT" />
-          <a className="mt-1">· Mint price:0.007007 ETH ·</a>
+          <a className="mt-1">· Mint price : free ·</a>
           <a>each wallet can only Mint 1</a>
         </div>
         <Box />
