@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.0.0",
+    "@tanstack/react-query": "^5.22.2",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
     "autoprefixer": "10.4.17",
+    "axios": "^1.6.7",
     "eslint": "8.56.0",
     "eslint-config-next": "14.1.0",
     "ethers": "^5.0.0",
@@ -25,7 +28,11 @@
     "react-icons": "^5.0.1",
     "sharp": "^0.33.2",
     "tailwindcss": "3.4.1",
-    "typescript": "5.3.3"
+    "typescript": "5.3.3",
+    "viem": "2.x",
+    "wagmi": "^2.5.7",
+    "web-vitals": "^1.0.1",
+    "web3modal": "^1.9.4"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

@@ -36,24 +36,22 @@ ipfs init
 ipfs add <path_to_file>
 ```
 
-## Running the Project (Rinkeby testnet)
+## Running the Project (Sepolia testnet)
 
 1. Install dependencies via `yarn`.
-2. Update the contract metadata file `contract-meta.json` and upload it to IPFS using `arkb deploy contract-meta.json`. After getting the Arweave link, update the data in `contractURI()` in the smart contract `TinaDAO.sol`.
+2. Update the contract metadata file `contract-meta.json` and upload it to IPFS using `arkb deploy contract-meta.json`. After getting the Arweave link, update the data in `contractURI()` in the smart contract `TOOT.sol`.
 3. Create a `.env` file under the root project folder from `.env.example` like the following:
 
 ```bash
-KOVAN_RPC_URL='https://kovan.infura.io/v3/project_id'
-ROPSTEN_RPC_URL='https://ropsten.infura.io/v3/project_id'
-RINKEBY_RPC_URL='https://rinkeby.infura.io/v3/project_id'
-POLYGON_RPC_URL='https://polygon-mainnet.infura.io/v3/project_id'
-MNEMONIC='yo'
-ETHERSCAN_API='yo'
+MAINNET_RPC_URL='https://eth-mainnet.g.alchemy.com/v2/<project_id>'
+SEPOLIA_RPC_URL='https://eth-sepolia.g.alchemy.com/v2/<project_id>'
+MNEMONIC=''
+ETHERSCAN_API=''
 POLYGONSCAN_API=''
-ARG_NAME='TinaDAO'
-ARG_SYMBOL='TINA'
+ARG_NAME='TOOT'
+ARG_SYMBOL='TOOT'
 ARG_ENDTIME='Feb 3 2022 19:00:00 GMT+0800'
-MAX_SUPPLY=5
+MAX_SUPPLY=7007
 ```
 
 4. Create a file named `.env` from `.env.example` under `/frontend` with the following content (Rinkeby testnet has a chain ID 4):

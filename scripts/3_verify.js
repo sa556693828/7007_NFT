@@ -26,7 +26,7 @@ const stageInfo = {
 async function main() {
   // verify contracts
   await hre.run("verify:verify", {
-    address: contractAddress.TinaDAO,
+    address: contractAddress.TOOT,
     constructorArguments: [name, symbol, stageInfo, baseURI],
   });
 }

@@ -11,8 +11,8 @@ async function main() {
   if (network.name === "hardhat") {
     console.warn(
       "You are trying to deploy a contract to the Hardhat Network, which" +
-        "gets automatically created and destroyed every time. Use the Hardhat" +
-        " option '--network localhost'"
+      "gets automatically created and destroyed every time. Use the Hardhat" +
+      " option '--network localhost'"
     );
   }
 
@@ -35,7 +35,7 @@ async function main() {
   const stageId = 1;
   const startTime = 0;
   const endTime = getTimestamp(new Date(process.env.ARG_ENDTIME));
-  const mintPrice = parseEther("0.1");
+  const mintPrice = parseEther("0");
 
   const stageInfo = {
     stageId,
@@ -45,17 +45,17 @@ async function main() {
     mintPrice,
   };
 
-  const TinaDAO = await ethers.getContractFactory("TinaDAO");
+  const TOOTNFT = await ethers.getContractFactory("TOOT");
 
-  const tinaDAO = await TinaDAO.deploy(name, symbol, stageInfo, baseURI);
+  const tootNFT = await TOOTNFT.deploy(name, symbol, stageInfo, baseURI);
 
-  await tinaDAO.deployed();
+  await tootNFT.deployed();
 
-  console.log("TinaDAO address:", tinaDAO.address);
+  console.log("TinaDAO address:", tootNFT.address);
 
   // We also save the contract's artifacts and address in the frontend directory
   initFrontendFile();
-  saveFrontendFiles(tinaDAO, "TinaDAO");
+  saveFrontendFiles(tootNFT, "TOOT");
   endFrontendFile();
 }
 

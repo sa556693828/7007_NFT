@@ -6,9 +6,10 @@ interface Props {
     answer: { title: string; content: string }[];
     active: number;
   };
+  lastAccording: boolean;
 }
 
-export default function AccordingQA({ data }: Props) {
+export default function AccordingQA({ data, lastAccording }: Props) {
   const [hover, setHover] = useState(false);
   const [item, setItem] = useState(data);
 
@@ -27,7 +28,7 @@ export default function AccordingQA({ data }: Props) {
         <a className="pl-[8px] text-[10px] tracking-tight">{data.question}</a>
       </div>
       <div
-        className={`max-h-0 overflow-hidden transition-all duration-300 group-[.is-active]:max-h-[330px]`}
+        className={`max-h-0 overflow-hidden transition-all ${lastAccording ? "duration-300" : "duration-500"} group-[.is-active]:max-h-[330px]`}
       >
         {data.answer.map((item, index) => (
           <div

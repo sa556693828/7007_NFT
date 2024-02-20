@@ -4,24 +4,21 @@ const contractAddress = require("../frontend/src/contracts/contract-address.json
 const VOUCHER_TYPE = {
   NFTVoucher: [
     { name: "redeemer", type: "address" },
-    { name: "stageId", type: "uint8" },
-    { name: "amount", type: "uint8" },
   ],
 };
-const stageId = 1;
 
 async function main() {
   const [signer] = await ethers.getSigners();
   // domain data
   const chainId = hre.network.config.chainId;
   console.log("chain ID:", chainId);
-  const contractAddr = contractAddress.TinaDAO;
+  const contractAddr = contractAddress.TOOT;
   if (!contractAddr) {
     console.log("[ERROR] contract address not set");
     return;
   }
   const domainData = {
-    name: "TinaDAO",
+    name: "TOOT",
     version: "1",
     chainId: chainId,
     verifyingContract: contractAddr,
@@ -34,8 +31,7 @@ async function main() {
     whitelist.map(async (list) => {
       const struct = list.split(" ");
       const redeemer = struct[0];
-      const amount = parseInt(struct[1]);
-      const voucher = { redeemer, stageId, amount };
+      const voucher = { redeemer };
       const signature = await signer._signTypedData(
         domainData,
         VOUCHER_TYPE,

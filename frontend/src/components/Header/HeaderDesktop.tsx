@@ -48,11 +48,11 @@ export default function Desktop({
         <Image src={logo.src} alt="title" width={45} height={89} />
 
         <div className="flex flex-col gap-[30px] text-right">
-          {menuList.map((menu) => (
-            <a className="font-bold" key={menu.name}>
+          {/* {menuList.map((menu) => (
+            <a className="font-bold text-white" key={menu.name}>
               {menu.name}
             </a>
-          ))}
+          ))} */}
         </div>
         <div className="flex flex-col gap-[18px] text-right">
           <div
