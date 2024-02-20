@@ -11,9 +11,16 @@ import { FaXTwitter } from "react-icons/fa6";
 interface Props {
   urlPath: string;
   darkMode: boolean;
+  socialLink: any;
+  openLink: (link: string) => void;
 }
 
-export default function Mobile({ urlPath, darkMode }: Props) {
+export default function Mobile({
+  urlPath,
+  darkMode,
+  socialLink,
+  openLink,
+}: Props) {
   const [showMenu, setShowMenu] = useState(false);
   const [hoverTG, setHoverTG] = useState(false);
   const [hoverX, setHoverX] = useState(false);
@@ -73,16 +80,18 @@ export default function Mobile({ urlPath, darkMode }: Props) {
       <div className="fixed bottom-[50px] right-5 z-50 flex w-full justify-end lg:hidden">
         <div className="z-50 flex flex-col gap-[18px] text-right">
           <div
-            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full border pt-[2px] ${hoverTG ? "border-buttonGr shadow-buttonG" : "border-white"} bg-black transition-all`}
+            className={`flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-full border pt-[2px] ${hoverTG ? "border-buttonGr shadow-buttonG" : "border-white"} bg-black transition-all`}
             onMouseEnter={() => setHoverTG(true)}
             onMouseLeave={() => setHoverTG(false)}
+            onClick={() => openLink(socialLink[0].link)}
           >
             <FaTelegramPlane size={23} color={hoverTG ? "#B4FF78" : "white"} />
           </div>
           <div
-            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full ${hoverX ? "bg-buttonGr shadow-buttonG" : "border border-white bg-white"} transition-all`}
+            className={`flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-full ${hoverX ? "bg-buttonGr shadow-buttonG" : "border border-white bg-white"} transition-all`}
             onMouseEnter={() => setHoverX(true)}
             onMouseLeave={() => setHoverX(false)}
+            onClick={() => openLink(socialLink[1].link)}
           >
             <FaXTwitter size={25} color="black" />
           </div>

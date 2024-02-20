@@ -1,3 +1,7 @@
+export const socialLink = [
+  { id: "X", link: "https://x.com/7007_studio?s=21&t=guauv9-D5cfkAcgT98UKWQ" },
+  { id: "Telegram", link: "https://t.me/+wUoA1zKgUBIzYzJl" },
+];
 export const menuList = [
   { id: "About", name: "About" },
   { id: "Products", name: "Products" },

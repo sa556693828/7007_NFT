@@ -15,9 +15,16 @@ import { NFTContext } from "../Provider";
 interface Props {
   urlPath: string;
   darkMode: boolean;
+  socialLink: any;
+  openLink: (link: string) => void;
 }
 
-export default function Desktop({ urlPath, darkMode }: Props) {
+export default function Desktop({
+  urlPath,
+  darkMode,
+  socialLink,
+  openLink,
+}: Props) {
   const [hoverTG, setHoverTG] = useState(false);
   const [hoverX, setHoverX] = useState(false);
   return (
@@ -49,16 +56,18 @@ export default function Desktop({ urlPath, darkMode }: Props) {
         </div>
         <div className="flex flex-col gap-[18px] text-right">
           <div
-            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full border pt-[2px] ${hoverTG ? "border-buttonGr shadow-buttonG " : "border-white"} bg-black transition-all`}
+            className={`flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-full border pt-[2px] ${hoverTG ? "border-buttonGr shadow-buttonG " : "border-white"} bg-black transition-all`}
             onMouseEnter={() => setHoverTG(true)}
             onMouseLeave={() => setHoverTG(false)}
+            onClick={() => openLink(socialLink[0].link)}
           >
             <FaTelegramPlane size={23} color={hoverTG ? "#B4FF78" : "white"} />
           </div>
           <div
-            className={`flex h-[45px] w-[45px] items-center justify-center rounded-full ${hoverX ? "bg-buttonGr shadow-buttonG" : "border border-white bg-white"} transition-all`}
+            className={`flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-full ${hoverX ? "bg-buttonGr shadow-buttonG" : "border border-white bg-white"} transition-all`}
             onMouseEnter={() => setHoverX(true)}
             onMouseLeave={() => setHoverX(false)}
+            onClick={() => openLink(socialLink[1].link)}
           >
             <FaXTwitter size={25} color="black" />
           </div>
