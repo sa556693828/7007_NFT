@@ -1,39 +1,98 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TinaDAO NFT
 
-## Getting Started
+## Node Version
 
-First, run the development server:
+It is recommended to use Node version 16
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+# Then edit ~/.bashrc as the command prompt suggests
+nvm install 16
+nvm use 16
+node --version
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Install Dependencies
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```shell
+npm i
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Arweave Setup
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```shell
+npm install -g arkb
+# Save wallet and setup a passphrase
+arkb wallet-save <path_to_arweave_key.json>
+# Deploy files to Arweave
+arkb deploy <path_to_file>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## IPFS Setup
 
-## Learn More
+```shell
+brew install ipfs
+ipfs init
+ipfs add <path_to_file>
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Running the Project (Rinkeby testnet)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Install dependencies via `yarn`.
+2. Update the contract metadata file `contract-meta.json` and upload it to IPFS using `arkb deploy contract-meta.json`. After getting the Arweave link, update the data in `contractURI()` in the smart contract `TinaDAO.sol`.
+3. Create a `.env` file under the root project folder from `.env.example` like the following:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+KOVAN_RPC_URL='https://kovan.infura.io/v3/project_id'
+ROPSTEN_RPC_URL='https://ropsten.infura.io/v3/project_id'
+RINKEBY_RPC_URL='https://rinkeby.infura.io/v3/project_id'
+POLYGON_RPC_URL='https://polygon-mainnet.infura.io/v3/project_id'
+MNEMONIC='yo'
+ETHERSCAN_API='yo'
+POLYGONSCAN_API=''
+ARG_NAME='TinaDAO'
+ARG_SYMBOL='TINA'
+ARG_ENDTIME='Feb 3 2022 19:00:00 GMT+0800'
+MAX_SUPPLY=5
+```
 
-## Deploy on Vercel
+4. Create a file named `.env` from `.env.example` under `/frontend` with the following content (Rinkeby testnet has a chain ID 4):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+SKIP_PREFLIGHT_CHECK=true
+REACT_APP_CHAIN_ID=4
+REACT_APP_AR_KEY={your_AR_key}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# 7007
+1. Add all of your NFT images to `images/raw` folder and `beforeReveal.png` for blind boxes.
+1. Upload images to IPFS with `npx hardhat run scripts/1_ipfsUploadUnrevealed.js`
+1. Deploy contract with `npx hardhat run scripts/2_deploy.js --network rinkeby`
+1. Wait one minute until the contract has been included on Etherscan and verify contract with `npx hardhat run scripts/3_verify.js --network rinkeby`
+1. Edit `scripts/whitelist.txt` with whitelisted addresses and run `npx hardhat run scripts/4_signWhitelistVouchers.js --network rinkeby` to pre-sign and save the signatures.
+
+1. Run frontend with `cd frontend && yarn && yarn start`
+1. Switch to Rinkeby testnet on MetaMask
+1. Start using the app
+1. After fixing the website, push to Github to deploy it on Netlify. Remember to set the environment variable in Netlify as in `frontend/.env`. The current website is at https://wonderful-visvesvaraya-ab4cca.netlify.app/.
+
+### Generate Coverage Report
+
+1. Run test to ensure everything works as expected via `npx hardhat test`.
+2. Run the following command and open`coverage/index.html` in your browser.
+
+```shell
+npm run coverage
+```
+
+## Project Structure
+
+- `contracts/`: Smart contract files. The main contract is `TinaDAO.sol`.
+- `test/`: All contract testing files. Developers can reference this to know to interact with the contracts with JavaScript. The main testing file is `TinaDAO.test.js`.
+
+## Smart Contract Inheritance
+
+![in](./images/inheritance.png)
+
+## Test Coverage
+
+![cov](./images/coverage.png)
