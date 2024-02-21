@@ -1,11 +1,10 @@
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import "web3modal"; // needed to get window.ethereum
-import contractAddress from "@/contracts/contract-address.json";
-import TOOTArtifact from "@/contracts/TOOT.json";
 import { NFTContext } from "../Provider";
 import BaseBtn from "./BaseBtn";
 import MintButton from "./MintButton";
+import { toast } from "react-hot-toast";
 
 declare let window: any;
 
@@ -17,6 +16,7 @@ const ConnectBtn = () => {
   const [errorMsg, setErrorMsg] = useState<string>();
 
   const checkNetwork = () => {
+    //TODO: 改成net_version
     if (window.ethereum.networkVersion === ACCEPT_NETWORK_ID) {
       return true;
     }
@@ -33,9 +33,7 @@ const ConnectBtn = () => {
         network = "Sepolia";
         break;
     }
-    //TODO:Toast
-    setErrorMsg(`~~Please connect Metamask to the ${network} testnet`);
-
+    setErrorMsg(`Please connect Metamask to the ${network} testnet`);
     return false;
   };
   const resetState = () => {
@@ -53,10 +51,10 @@ const ConnectBtn = () => {
     initializeEthers();
   };
   const connectWallet = async () => {
-    if (!checkNetwork()) {
-      return;
-    }
+    if (!checkNetwork()) return;
+
     try {
+      //TODO: 改成eth_requestAccounts
       const [selectedAddress] = await window.ethereum.enable();
       initialize(selectedAddress);
       window.ethereum.on("accountsChanged", ([newAddress]: [string]) => {
@@ -103,7 +101,15 @@ const ConnectBtn = () => {
           />
         </>
       ) : (
-        <BaseBtn title="Connect Wallet" onClick={connectWallet} />
+        <BaseBtn
+          title="Connect Wallet"
+          onClick={() => {
+            connectWallet();
+            if (window.ethereum.networkVersion !== ACCEPT_NETWORK_ID) {
+              toast(errorMsg as string);
+            }
+          }}
+        />
       )}
     </>
   );

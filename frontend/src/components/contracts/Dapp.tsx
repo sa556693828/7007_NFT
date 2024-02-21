@@ -1,28 +1,8 @@
 import { BigNumber, ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import "web3modal"; // needed to get window.ethereum
-import contractAddress from "@/contracts/contract-address.json";
-import TOOTArtifact from "@/contracts/TOOT.json";
-import WHITELIST from "../../whitelist.json";
-import { TransactionErrorMessage } from "./TransactionErrorMessage";
-import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
-import { NFTContext } from "../Provider";
-
-declare let window: any;
-const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
-
-type StageInfo = {
-  stageId: number;
-  maxSupply: number;
-  startTime: number;
-  endTime: number;
-  mintPrice: BigNumber;
-};
 
 const Dapp = () => {
-  const [selectedAddress, setSelectedAddress] = useState<string>();
-  const [txBeingSent, setTxBeingSent] = useState<string>();
-  const [transactionError, setTransactionError] = useState<Error>();
   const [pollDataInterval, setPollDataInterval] = useState<NodeJS.Timeout>();
   const [balance, setBalance] = useState<BigNumber>();
 
@@ -35,6 +15,7 @@ const Dapp = () => {
     clearInterval(pollDataInterval!);
     setPollDataInterval(undefined);
   };
+
   useEffect(() => {
     if (typeof window !== "undefined" && window.ethereum === undefined) {
       return;
@@ -89,32 +70,7 @@ const Dapp = () => {
   //   return ipfsToUrl(metaJSON.image);
   // };
 
-  const dismissTransactionError = () => {
-    setTransactionError(undefined);
-  };
-  const getRpcErrorMessage = (error: any) => {
-    return error.message;
-  };
-
-  return (
-    <>
-      {/* <div className="container p-4 text-white">
-        <div className="row">
-          <div className="col-12">
-            {txBeingSent && (
-              <WaitingForTransactionMessage txHash={txBeingSent} />
-            )}
-            {transactionError && (
-              <TransactionErrorMessage
-                message={getRpcErrorMessage(transactionError)}
-                dismiss={dismissTransactionError}
-              />
-            )}
-          </div>
-        </div>
-      </div> */}
-    </>
-  );
+  return <></>;
 };
 
 export default Dapp;
