@@ -23,9 +23,9 @@ export default function Document() {
           property="og:description"
           content="Revolutionizing AI with transparent,on-chain model publishing and creator compensation."
         />
-        <meta property="og:url" content="https://www.7007.ai/main.png" />
+        <meta property="og:url" content="https://www.7007.ai/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.7007.ai/main.png" />
+        <meta property="og:image" content="https://www.7007.ai/twitter.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="7007.ai" />
         <meta property="twitter:url" content="https://www.7007.ai/" />
@@ -34,7 +34,7 @@ export default function Document() {
           name="twitter:description"
           content="Revolutionizing AI with transparent,on-chain model publishing and creator compensation."
         />
-        <meta name="twitter:image" content="https://www.7007.ai/main.png" />
+        <meta name="twitter:image" content="https://www.7007.ai/twitter.png" />
       </Head>
       <body>
         <Main />
