@@ -5,6 +5,7 @@
     "@nomiclabs/hardhat-etherscan": "^3.0.0",
     "@nomiclabs/hardhat-truffle5": "^2.0.3",
     "@openzeppelin/contracts": "^4.4.2",
+    "@pinata/sdk": "^2.1.0",
     "dotenv": "^15.0.0",
     "erc721a": "^2.0.0",
     "hardhat": "^2.8.3",

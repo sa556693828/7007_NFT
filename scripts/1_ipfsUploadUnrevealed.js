@@ -9,18 +9,19 @@ const UNREVEALED_DIR = "./images/unrevealed";
 const CONFIG_PATH = "./scripts/config.json";
 
 async function main() {
-  // const readableStreamForFile = fs.createReadStream('./images/beforeReveal.html');
-  // const result = await pinata.pinFileToIPFS(readableStreamForFile, {
-  //     pinataMetadata: {
-  //         name: "Blindbox",
+  const readableStreamForFile = fs.createReadStream(
+    "./images/beforeReveal.html"
+  );
+  const result = await pinata.pinFileToIPFS(readableStreamForFile, {
+    pinataMetadata: {
+      name: "Blindbox",
+    },
+    pinataOptions: {
+      cidVersion: 0,
+    },
+  });
 
-  //     },
-  //     pinataOptions: {
-  //         cidVersion: 0
-  //     }
-  // })
-
-  let cid = 'https://lime-eastern-reptile-334.mypinata.cloud/ipfs/QmSNappvpeNE4TYQB5a7ZqM9S8HepwG5Ab7BFZusbCb15A'
+  let cid = result.IpfsHash;
   // const ipfs = create({ url: "https://ipfs.infura.io:5001/api/v0" });
   // console.log("IPFS: waiting for unrevealed image to be uploaded...");
   // const file = await ipfs.addAll(
@@ -46,7 +47,8 @@ async function main() {
   for (let i = 0; i < process.env.MAX_SUPPLY; ++i) {
     let metadata = metadataTemplate;
     metadata.name = `${process.env.ARG_NAME} #${i}`;
-    metadata.animation_url = cid;
+    metadata.animation_url =
+      "https://lime-eastern-reptile-334.mypinata.cloud/ipfs/" + cid;
     fs.writeFileSync(`${UNREVEALED_DIR}/${i}`, JSON.stringify(metadata));
   }
 
@@ -72,11 +74,13 @@ async function main() {
     },
     pinataOptions: {
       cidVersion: 0,
-      wrapWithDirectory: true
-    }
-  })
+      wrapWithDirectory: true,
+    },
+  });
 
-  console.log(result1)
+  console.log(
+    `https://lime-eastern-reptile-334.mypinata.cloud/ipfs/${result1.IpfsHash}/unrevealed/`
+  );
 
   // console.log("IPFS: waiting for all unrevealed images to be uploaded...");
   // for await (const item of files) {
