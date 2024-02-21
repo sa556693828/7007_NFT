@@ -51,7 +51,6 @@ export const NFTProvider = ({ children }: { children: any }) => {
   //TODO: useSWR 需要用戶connect才建立嗎？
   const UpdateContract = useCallback(
     async (singer: any) => {
-      console.log("UpdateContract");
       if (!singer) {
         setTOOT(undefined);
         return;

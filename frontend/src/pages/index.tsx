@@ -6,14 +6,86 @@ import { NFTContext } from "@/components/Provider";
 import Dapp from "@/components/contracts/Dapp";
 import ConnectBtn from "@/components/Button/ConnectBtn";
 import Box from "@/components/AE/mintPage";
+import { ethers } from "ethers";
+
+declare let window: any;
+const ACCEPT_NETWORK_ID = process.env.NEXT_PUBLIC_CHAIN_ID; // 31337 for hardhat local and 111333111 for Sepolia
 
 export default function NFT() {
   const { contract } = useContext(NFTContext);
   const [totalSupply, setTotalSupply] = useState();
+  const { UpdateContract } = useContext(NFTContext);
+  const [selectedAddress, setSelectedAddress] = useState<string>();
+  const [errorMsg, setErrorMsg] = useState<string>();
+  const [userBalance, setUserBalance] = useState<string>();
+
+  const checkNetwork = () => {
+    //TODO: 改成net_version
+    if (window.ethereum.networkVersion === ACCEPT_NETWORK_ID) {
+      return true;
+    }
+
+    let network = "mainnet";
+    switch (ACCEPT_NETWORK_ID) {
+      case "1":
+        network = "Mainnet";
+        break;
+      case "31337":
+        network = "Hardhat";
+        break;
+      case "11155111":
+        network = "Sepolia";
+        break;
+    }
+    setErrorMsg(`Please connect Metamask to the ${network} testnet`);
+    return false;
+  };
+  const resetState = () => {
+    UpdateContract(undefined);
+    setSelectedAddress(undefined);
+  };
+  const initializeEthers = async () => {
+    const _provider = new ethers.providers.Web3Provider(window.ethereum);
+    UpdateContract(_provider.getSigner(0));
+  };
+  const initialize = async (newAddress: any) => {
+    setSelectedAddress(newAddress);
+    initializeEthers();
+  };
+  const connectWallet = async () => {
+    if (!checkNetwork()) return;
+
+    try {
+      //TODO: 改成eth_requestAccounts
+      const [selectedAddress] = await window.ethereum.enable();
+      initialize(selectedAddress);
+      window.ethereum.on("accountsChanged", ([newAddress]: [string]) => {
+        if (newAddress === undefined) {
+          return resetState();
+        }
+        initialize(newAddress);
+      });
+
+      window.ethereum.on("networkChanged", ([networkId]: [string]) => {
+        if (networkId !== ACCEPT_NETWORK_ID) {
+          return resetState();
+        }
+        resetState();
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const checkUserBalance = async () => {
+    if (!selectedAddress) return;
+    const balance = await contract?.balanceOf(selectedAddress);
+    setUserBalance(balance.toString());
+  };
 
   useEffect(() => {
     const interval = setInterval(async () => {
       const supply = await contract?.totalSupply();
+      checkUserBalance();
       setTotalSupply(supply?.toString());
     }, 1500);
 
@@ -35,11 +107,16 @@ export default function NFT() {
           <a className="mb-1">{`[ ${
             totalSupply ? totalSupply : "Pending . . . "
           } / 7007 ]`}</a>
-          <ConnectBtn />
+          <ConnectBtn
+            connectWallet={connectWallet}
+            address={selectedAddress}
+            errorMsg={errorMsg}
+            userBalance={userBalance}
+          />
           <a className="mt-1">· Mint price : free ·</a>
-          <a>each wallet can only Mint 1</a>
+          <a>each wallet can mint 2</a>
         </div>
-        {/* <Box /> */}
+        <Box />
       </div>
       <div className="z-50 flex min-h-[100vh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] font-digital text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:bg-opacity-60 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>

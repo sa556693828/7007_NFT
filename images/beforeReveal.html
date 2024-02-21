@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>7007</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@17/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      var cols, rows;
+      var scl = 25;
+      var w = 2000;
+      var h = 480;
+      var terrain = [];
+      var wave = 0;
+      var y = 0;
+      var clrR = 255;
+      var clrG = 255;
+      var clrB = 255;
+
+      function setup() {
+        createCanvas(window.innerWidth, window.innerHeight, WEBGL);
+        cols = w / scl;
+        rows = h / scl;
+        window.addEventListener("resize", () => {
+          const canvasWidth = window.innerWidth;
+          const canvasHeight = window.innerHeight;
+          resizeCanvas(canvasWidth, canvasHeight);
+        });
+      }
+
+      function draw() {
+        // 滑鼠距離中心
+        var msTX = abs(mouseX - width / 2);
+
+        // 動態山脈
+        wave += -0.02;
+        var yoff = 0;
+        for (var x = 0; x < cols; x++) {
+          terrain[x] = [];
+          var xoff = wave;
+          for (var y = 0; y < rows; y++) {
+            terrain[x][y] = map(noise(xoff, yoff), 0, 1, -150, 200);
+            xoff += 0.1;
+          }
+          yoff += 0.2 + map(noise(0, 0), 0, 1, 0, 5);
+        }
+
+        background(0);
+
+        stroke(clrR, clrG, clrB);
+        strokeWeight(0.5);
+        fill(0);
+        translate(0, 400, 150);
+        rotateX(PI / 2.2);
+        translate(-w / 2, -h / 2);
+        for (var y = 0; y < rows - 1; y++) {
+          beginShape(TRIANGLE_STRIP);
+          for (var x = 0; x < cols; x++) {
+            vertex(x * scl, y * scl, terrain[x][y]);
+            vertex(x * scl, (y + 1) * scl, terrain[x][y + 1]);
+          }
+          endShape();
+        }
+        // 位移復原
+        translate(w / 2, h / 2);
+        rotateX(-PI / 2);
+        translate(0, -400, -150);
+
+        // 盒子
+        var msX = map(mouseY, width, 0, 0, 3);
+        var msY = map(mouseX, height, 0, 0, 3);
+
+        push();
+        noFill();
+        stroke(clrR, clrG, clrB);
+        translate(0, -100, 0);
+        rotateX(frameCount / 180 + msX);
+        rotateY(-frameCount / 120 + msY);
+        // ellipsoid(msTX*2,msTX*2,msTX*2,8,2)
+        ellipsoid(1800, 1800, 1800, 8, 4);
+        ellipsoid(20, 30, 20, 8, 2);
+        box(40 + msTX * 4);
+        box(180);
+        box(175);
+        box(130 + sin(-frameCount / 60) * 40);
+
+        fill(clrR, clrG, clrB, 60);
+        box(90);
+        box(280, 3, 3);
+        box(100, 20, 20);
+        box(140, 10, 10);
+        rotateY(PI / 2);
+        box(280, 3, 3);
+        box(100, 20, 20);
+        box(140, 10, 10);
+        rotateZ(PI / 2);
+        box(280, 3, 3);
+        box(100, 20, 20);
+        box(140, 10, 10);
+
+        fill(0);
+        translate(0, 0, 180);
+        box(15);
+        translate(0, 0, -360);
+        box(15);
+        translate(0, 180, 180);
+        box(15);
+        translate(0, -360, 0);
+        box(15);
+        translate(180, 180, 0);
+        box(15);
+        translate(-360, 0, 0);
+        box(15);
+        translate(180, 0, 0);
+        pop();
+
+        // 點雲
+        // noFill()
+        fill(clrR, clrG, clrB);
+        stroke(clrR, clrG, clrB);
+        strokeWeight(0.3);
+        rotateY((frameCount / 300) * 1 + msY);
+        rotateZ(PI / 4);
+        for (var i = 0; i < 100; i += 3) {
+          for (var o = 0; o < 100; o += 3) {
+            rotateX(i + o / 5);
+            rotateY(i / 6);
+            translate(i, o, i + o * 2 - 200);
+            rect(
+              (10 - msTX / 100) / 2,
+              (10 - msTX / 100) / 2,
+              (10 - msTX / 100) / 2
+            );
+          }
+        }
+      }
+    </script>
+    <script>
+      // 使用 ReactDOM.render() 方法将 React 组件渲染到容器元素中
+      ReactDOM.render(
+        React.createElement(Box),
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>

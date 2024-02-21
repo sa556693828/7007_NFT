@@ -9,16 +9,17 @@ interface Props {
   arrow?: boolean;
   whiteListType?: boolean;
   address?: any;
+  balance?: string;
 }
 
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
-//TODO:換scan網址
 
 export default function MintButton({
   title,
   arrow,
   whiteListType = false,
   address,
+  balance,
 }: Props) {
   const { TOOT } = useContext(NFTContext);
   const [TOOTData, setTOOTData] = useState<{
@@ -26,6 +27,7 @@ export default function MintButton({
     symbol: string;
     startTime: number;
   }>();
+  const scanWeb = process.env.NEXT_PUBLIC_SCAN_ADDRESS;
   const [whitelistData, setWhitelistData] = useState<Map<string, any>>();
 
   useEffect(() => {
@@ -45,7 +47,8 @@ export default function MintButton({
       <span className="whitespace-pre-wrap">
         Waiting for transaction: {"\n"}
         <a
-          href={`https://sepolia.etherscan.io/tx/${tx.hash}`}
+          href={`${scanWeb}tx/${tx.hash}`}
+          target="_blank"
           className="underline underline-offset-4"
         >
           <strong>
@@ -61,7 +64,7 @@ export default function MintButton({
         <span className="whitespace-pre-wrap">
           Transaction failed: {"\n"}
           <a
-            href={`https://sepolia.etherscan.io/tx/${tx.hash}`}
+            href={`${scanWeb}tx/${tx.hash}`}
             target="_blank"
             className="underline underline-offset-4"
           >
@@ -97,6 +100,7 @@ export default function MintButton({
       );
     }
   };
+
   const mintToken = async (whitelist: boolean) => {
     toast.remove();
     const loadingToast = toast.loading("Minting...");
@@ -117,22 +121,28 @@ export default function MintButton({
         return;
       }
 
+      if (Number(balance) >= 2) {
+        toast.dismiss(loadingToast);
+        toast.error("Sorry! You can only mint 2.");
+        return;
+      }
       // If whitelist minting, check whitelist data
       if (whitelist && whitelistData) {
-        const data = whitelistData.get(address);
+        const data = whitelistData.get(address.toLowerCase());
         if (!data) {
           toast.dismiss(loadingToast);
           toast("Sorry! You're not in whitelist.");
           return;
         }
+
         const voucher = data.voucher;
         const signature = data.signature;
-        console.log(voucher, signature);
 
         let tx = await TOOT?.whiteListMint(voucher, signature);
         displayTransactionStatus(tx);
       } else {
         // For regular minting
+
         const tx = await TOOT?.mint();
         displayTransactionStatus(tx);
       }

@@ -2,10 +2,8 @@ import { useEffect, useRef } from 'react';
 import Matter from 'matter-js';
 
 const PhysicsSimulation = () => {
-    console.log('PhysicsSimulation');
     const renderRef = useRef();
     useEffect(() => {
-        console.log('useEffect');
         if (typeof window !== 'undefined') {
             import('p5').then(({ default: p5 }) => {
                 const sketch = (p) => {

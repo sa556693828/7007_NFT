@@ -1,78 +1,22 @@
-import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import "web3modal"; // needed to get window.ethereum
-import { NFTContext } from "../Provider";
 import BaseBtn from "./BaseBtn";
 import MintButton from "./MintButton";
 import { toast } from "react-hot-toast";
 
-declare let window: any;
+interface Prop {
+  connectWallet: () => void;
+  address: string | undefined;
+  errorMsg: string | undefined;
+  userBalance: string | undefined;
+}
 
-const ACCEPT_NETWORK_ID = process.env.NEXT_PUBLIC_CHAIN_ID; // 31337 for hardhat local and 42 for kovan
-
-const ConnectBtn = () => {
-  const { UpdateContract } = useContext(NFTContext);
-  const [selectedAddress, setSelectedAddress] = useState<string>();
-  const [errorMsg, setErrorMsg] = useState<string>();
-
-  const checkNetwork = () => {
-    //TODO: 改成net_version
-    if (window.ethereum.networkVersion === ACCEPT_NETWORK_ID) {
-      return true;
-    }
-
-    let network = "mainnet";
-    switch (ACCEPT_NETWORK_ID) {
-      case "1":
-        network = "Mainnet";
-        break;
-      case "31337":
-        network = "Hardhat";
-        break;
-      case "11155111":
-        network = "Sepolia";
-        break;
-    }
-    setErrorMsg(`Please connect Metamask to the ${network} testnet`);
-    return false;
-  };
-  const resetState = () => {
-    UpdateContract(undefined);
-    setSelectedAddress(undefined);
-  };
-  const initializeEthers = async () => {
-    const _provider = new ethers.providers.Web3Provider(window.ethereum);
-    UpdateContract(_provider.getSigner(0));
-  };
-  const initialize = async (newAddress: any) => {
-    setSelectedAddress(newAddress);
-    initializeEthers();
-  };
-  const connectWallet = async () => {
-    if (!checkNetwork()) return;
-
-    try {
-      //TODO: 改成eth_requestAccounts
-      const [selectedAddress] = await window.ethereum.enable();
-      initialize(selectedAddress);
-      window.ethereum.on("accountsChanged", ([newAddress]: [string]) => {
-        if (newAddress === undefined) {
-          return resetState();
-        }
-        initialize(newAddress);
-      });
-
-      window.ethereum.on("networkChanged", ([networkId]: [string]) => {
-        if (networkId !== ACCEPT_NETWORK_ID) {
-          return resetState();
-        }
-        resetState();
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+const ConnectBtn = ({
+  connectWallet,
+  address,
+  errorMsg,
+  userBalance,
+}: Prop) => {
   useEffect(() => {
     if (typeof window !== "undefined" && window.ethereum === undefined) {
       return () => {};
@@ -87,13 +31,19 @@ const ConnectBtn = () => {
 
   return (
     <>
-      {selectedAddress ? (
+      {address ? (
         <>
-          <MintButton title="MINT" arrow={true} address={selectedAddress} />
+          <MintButton
+            title="MINT"
+            arrow={true}
+            address={address}
+            balance={userBalance}
+          />
           <MintButton
             title="WHITE LIST MINT"
             whiteListType={true}
-            address={selectedAddress}
+            address={address}
+            balance={userBalance}
           />
         </>
       ) : (
@@ -101,7 +51,10 @@ const ConnectBtn = () => {
           title="Connect Wallet"
           onClick={() => {
             connectWallet();
-            if (window.ethereum.networkVersion !== ACCEPT_NETWORK_ID) {
+            if (
+              window.ethereum.networkVersion !==
+              process.env.NEXT_PUBLIC_CHAIN_ID
+            ) {
               toast(errorMsg as string);
             }
           }}
@@ -110,4 +63,5 @@ const ConnectBtn = () => {
     </>
   );
 };
+
 export default ConnectBtn;

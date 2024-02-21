@@ -9,7 +9,7 @@ async function main() {
   const ipfs = create({ url: "https://ipfs.infura.io:5001/api/v0" });
   console.log("IPFS: waiting for unrevealed image to be uploaded...");
   const file = await ipfs.addAll(
-    globSource("./images/beforeReveal.png", "**/*"),
+    globSource("./images/beforeReveal.html", "**/*"),
     {
       pin: true,
     }

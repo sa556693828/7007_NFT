@@ -79,10 +79,8 @@ module.exports = {
     },
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL,
-      accounts: {
-        mnemonic: process.env.MNEMONIC,
-      },
-      chainId: 1337,
+      accounts: [process.env.SEPOLIA_PRIVATE_KEY],
+      chainId: 11155111,
     },
   },
   gasReporter: {

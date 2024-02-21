@@ -10,10 +10,7 @@ export default function BaseBtn({ title, arrow, onClick }: Props) {
   const [hover, setHover] = useState(false);
 
   return (
-    <div
-      className="flex w-full items-center justify-center"
-      onClick={onClick ? onClick : () => {}}
-    >
+    <div className="flex w-full items-center justify-center">
       <div
         className={`${hover ? "radiusH border-buttonGr" : "radius border-white"} h-1 w-1 rounded-full border transition-all`}
       />
@@ -24,6 +21,7 @@ export default function BaseBtn({ title, arrow, onClick }: Props) {
         className="h-[45px] w-[254px] border-[0.5px] border-white bg-buttonW shadow-buttonW transition-all hover:border-buttonGr hover:bg-buttonG hover:text-buttonGr hover:shadow-buttonG"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        onClick={onClick ? onClick : () => {}}
       >
         {arrow && (
           <span

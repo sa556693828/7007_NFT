@@ -3,12 +3,6 @@
         "voucher": {
             "redeemer": "0xc21e162ae6a7cd12931345e080e82e71dfbd116f"
         },
-        "signature": "0xbb43c362fb1ebca7f616d80f96910281430e9d1028097bfe467a52a34131b03941c03e512080b58f38b3b48bacfb3facaf150fdc535ee7876e3f727fbcf57c951b"
-    },
-    "0x70997970c51812dc3a010c7d01b50e0d17dc79c8": {
-        "voucher": {
-            "redeemer": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
-        },
-        "signature": "0xecc0642ad822e8e953064d76c27c97a868e6fdc330e3ed469850e6ecf30a6f796457063ce7b5aa77c8b1f55de3e0ba251319378ddd0e9075862e44ee282742441b"
+        "signature": "0xd1f5c3954addc7067ac42abea2f8495539065c4a27fda40645b53dc34b3834e979e4ef31914c5487e4b632320804abce58a083d141340c1fcb1cb99b12c268071c"
     }
 }
