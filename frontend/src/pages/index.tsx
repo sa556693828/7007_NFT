@@ -9,12 +9,12 @@ import Box from "@/components/AE/mintPage";
 
 export default function NFT() {
   const { contract } = useContext(NFTContext);
-  const [totalSupply, setTotalSupply] = useState(0);
+  const [totalSupply, setTotalSupply] = useState();
 
   useEffect(() => {
     const interval = setInterval(async () => {
       const supply = await contract?.totalSupply();
-      setTotalSupply(supply?.toNumber());
+      setTotalSupply(supply?.toString());
     }, 1500);
 
     return () => clearInterval(interval);
@@ -32,7 +32,9 @@ export default function NFT() {
         </div>
         <Dapp />
         <div className="z-20 mb-[35%] flex w-full flex-col items-center gap-4 text-center lg:mb-0 lg:mt-[19.5%]">
-          <a className="mb-1">{`[ ${totalSupply} / 7007 ]`}</a>
+          <a className="mb-1">{`[ ${
+            totalSupply ? totalSupply : "Pending . . . "
+          } / 7007 ]`}</a>
           <ConnectBtn />
           <a className="mt-1">· Mint price : free ·</a>
           <a>each wallet can only Mint 1</a>

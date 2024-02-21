@@ -29,7 +29,6 @@ body {
   font-family: 'Syncopate', sans-serif;
 }
 
-
 img {
   shape-rendering: optimizeSpeed; /* 較新的標準 */
   image-rendering: -webkit-optimize-contrast; /* Webkit */

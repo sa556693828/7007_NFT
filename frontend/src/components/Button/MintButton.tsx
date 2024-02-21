@@ -61,6 +61,7 @@ export default function MintButton({
           Transaction failed: {"\n"}
           <a
             href={`https://sepolia.etherscan.io/tx/${tx.hash}`}
+            target="_blank"
             className="underline underline-offset-4"
           >
             <strong>
@@ -80,6 +81,7 @@ export default function MintButton({
           Transaction success: {"\n"}
           <a
             href={`https://sepolia.etherscan.io/tx/${tx.hash}`}
+            target="_blank"
             className="underline underline-offset-4"
           >
             <strong>
