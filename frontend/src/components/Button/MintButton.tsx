@@ -39,8 +39,8 @@ export default function MintButton({
     setWhitelistData(new Map(Object.entries(WHITELIST)));
   }, [TOOT]);
 
-  const displayTransactionStatus = async (loadingToast: any, tx: any) => {
-    toast.loading(
+  const displayTransactionStatus = async (tx: any) => {
+    const txLoading = toast.loading(
       <span className="whitespace-pre-wrap">
         Waiting for transaction: {"\n"}
         <a
@@ -53,9 +53,6 @@ export default function MintButton({
           </strong>
         </a>
       </span>,
-      {
-        id: loadingToast,
-      },
     );
     const receipt = await tx.wait();
     if (receipt.status === 0) {
@@ -73,7 +70,7 @@ export default function MintButton({
           </a>
         </span>,
         {
-          id: loadingToast,
+          id: txLoading,
         },
       );
       throw new Error("Transaction failed");
@@ -92,7 +89,7 @@ export default function MintButton({
           </a>
         </span>,
         {
-          id: loadingToast,
+          id: txLoading,
         },
       );
     }
@@ -128,11 +125,11 @@ export default function MintButton({
         const voucher = data.voucher;
         const signature = data.signature;
         let tx = await TOOT?.whiteListMint(voucher, signature);
-        displayTransactionStatus(loadingToast, tx);
+        displayTransactionStatus(tx);
       } else {
         // For regular minting
         const tx = await TOOT?.mint();
-        displayTransactionStatus(loadingToast, tx);
+        displayTransactionStatus(tx);
       }
     } catch (error: any) {
       if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
