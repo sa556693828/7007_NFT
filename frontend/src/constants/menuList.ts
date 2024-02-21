@@ -1,6 +1,6 @@
 export const socialLink = [
-  { id: "X", link: "https://x.com/7007_studio?s=21&t=guauv9-D5cfkAcgT98UKWQ" },
-  { id: "Telegram", link: "https://t.me/+wUoA1zKgUBIzYzJl" },
+  { id: "X", link: "https://x.com/eip_7007_dev?s=21&t=guauv9-D5cfkAcgT98UKWQ" },
+  { id: "Telegram", link: "https://t.me/+MyVX8ViH0bU2NmNl" },
 ];
 export const menuList = [
   { id: "About", name: "About" },
