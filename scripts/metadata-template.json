@@ -1,10 +1,10 @@
 {
-    "name": "",
-    "image": "",
-    "attributes": [
-        {
-            "trait_type": "Status",
-            "value": "Hidden"
-        }
-    ]
+  "name": "",
+  "animation_url": "",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Hidden"
+    }
+  ]
 }

@@ -21,7 +21,7 @@ contract TOOT is Ownable, ERC721A, EIP712 {
     string private baseTokenURI;
 
     string private _contractURI =
-        "https://arweave.net/VF34QWIaINKcTeNXutDK-NBkNBqVj5o5qelc6EQ3GaQ"; //TODO: update contractURI
+        "https://lime-eastern-reptile-334.mypinata.cloud/ipfs/QmeQmd58WpkcmAjyi2QiU3n25dUUXVzZ2rGhTj1oXYdAP5";
 
     mapping(address => uint256) public _mintedCounts;
 
@@ -82,10 +82,10 @@ contract TOOT is Ownable, ERC721A, EIP712 {
     }
 
     /// @dev Verify voucher
-    function _verify(NFTVoucher calldata voucher, bytes calldata signature)
-        private
-        view
-    {
+    function _verify(
+        NFTVoucher calldata voucher,
+        bytes calldata signature
+    ) private view {
         require(
             voucher.redeemer == _msgSender(),
             "Voucher not for the redeemer"

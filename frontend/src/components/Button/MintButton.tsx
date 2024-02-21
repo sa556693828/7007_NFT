@@ -84,7 +84,7 @@ export default function MintButton({
         <span className="whitespace-pre-wrap">
           Transaction success: {"\n"}
           <a
-            href={`https://sepolia.etherscan.io/tx/${tx.hash}`}
+            href={`${scanWeb}tx/${tx.hash}`}
             target="_blank"
             className="underline underline-offset-4"
           >

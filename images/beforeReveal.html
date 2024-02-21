@@ -17,7 +17,7 @@
       }
     </style>
   </head>
-  <body>
+  <body id="header">
     <div id="root"></div>
     <script>
       var cols, rows;
@@ -32,12 +32,14 @@
       var clrB = 255;
 
       function setup() {
-        createCanvas(window.innerWidth, window.innerHeight, WEBGL);
+        const canvasWidth = document.getElementById("header").clientWidth;
+        const canvasHeight = document.getElementById("header").clientHeight;
+        createCanvas(canvasWidth, canvasHeight, WEBGL);
         cols = w / scl;
         rows = h / scl;
         window.addEventListener("resize", () => {
-          const canvasWidth = window.innerWidth;
-          const canvasHeight = window.innerHeight;
+          const canvasWidth = document.getElementById("header").clientWidth;
+          const canvasHeight = document.getElementById("header").clientHeight;
           resizeCanvas(canvasWidth, canvasHeight);
         });
       }
@@ -151,10 +153,7 @@
     </script>
     <script>
       // 使用 ReactDOM.render() 方法将 React 组件渲染到容器元素中
-      ReactDOM.render(
-        React.createElement(Box),
-        document.getElementById("root")
-      );
+      ReactDOM.render(document.getElementById("root"));
     </script>
   </body>
 </html>
