@@ -12,9 +12,8 @@ declare let window: any;
 const ACCEPT_NETWORK_ID = process.env.NEXT_PUBLIC_CHAIN_ID; // 31337 for hardhat local and 111333111 for Sepolia
 
 export default function NFT() {
-  const { contract } = useContext(NFTContext);
   const [totalSupply, setTotalSupply] = useState();
-  const { UpdateContract } = useContext(NFTContext);
+  const { UpdateContract, contract } = useContext(NFTContext);
   const [selectedAddress, setSelectedAddress] = useState<string>();
   const [errorMsg, setErrorMsg] = useState<string>();
   const [userBalance, setUserBalance] = useState<string>();
@@ -90,7 +89,7 @@ export default function NFT() {
     }, 1500);
 
     return () => clearInterval(interval);
-  }, [contract]);
+  }, [contract, selectedAddress]);
 
   return (
     <>
@@ -116,7 +115,7 @@ export default function NFT() {
           <a className="mt-1">· Mint price : free ·</a>
           <a>each wallet can mint 2</a>
         </div>
-        <Box />
+        {/* <Box /> */}
       </div>
       <div className="z-50 flex min-h-[100vh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] font-digital text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:bg-opacity-60 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>

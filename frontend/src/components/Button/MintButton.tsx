@@ -104,9 +104,9 @@ export default function MintButton({
   const mintToken = async (whitelist: boolean) => {
     toast.remove();
     const loadingToast = toast.loading("Minting...");
-
+    console.log(balance);
     try {
-      if (!address || !TOOTData) return;
+      if (!address || !TOOTData || !balance) return;
 
       // Check if sale has started
       if (!whitelist && TOOTData.startTime * 1000 > Date.now()) {

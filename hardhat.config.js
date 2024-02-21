@@ -72,14 +72,12 @@ module.exports = {
     },
     mainnet: {
       url: process.env.MAINNET_RPC_URL,
-      accounts: {
-        mnemonic: process.env.MNEMONIC,
-      },
+      accounts: [process.env.PRIVATE_KEY],
       chainId: 1,
     },
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL,
-      accounts: [process.env.SEPOLIA_PRIVATE_KEY],
+      accounts: [process.env.PRIVATE_KEY],
       chainId: 11155111,
     },
   },

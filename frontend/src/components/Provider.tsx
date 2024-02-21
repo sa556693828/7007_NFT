@@ -37,6 +37,7 @@ export const NFTProvider = ({ children }: { children: any }) => {
     localStorage.setItem("darkModeEnabled", darkModeEnabled.toString());
   };
   useEffect(() => {
+    //TODO:換成ethers
     const _provider = new ethers.providers.JsonRpcProvider(
       process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL,
     );
