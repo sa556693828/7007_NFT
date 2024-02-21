@@ -16,8 +16,6 @@ contract TOOT is Ownable, ERC721A, EIP712 {
     uint16 private constant MINT_PRICE = 0;
 
     uint32 public startTime;
-    // 1708180980 => 2024-2-17 22:43:00
-    // 1708456539219
 
     // The base link that leads to the image / video of the token
     string private baseTokenURI;
