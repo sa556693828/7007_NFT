@@ -40,7 +40,7 @@ export default function MintButton({
   }, [TOOT]);
 
   const displayTransactionStatus = async (loadingToast: any, tx: any) => {
-    toast(
+    toast.loading(
       <span className="whitespace-pre-wrap">
         Waiting for transaction: {"\n"}
         <a
@@ -59,7 +59,7 @@ export default function MintButton({
     );
     const receipt = await tx.wait();
     if (receipt.status === 0) {
-      toast(
+      toast.error(
         <span className="whitespace-pre-wrap">
           Transaction failed: {"\n"}
           <a
@@ -78,7 +78,7 @@ export default function MintButton({
       );
       throw new Error("Transaction failed");
     } else {
-      toast(
+      toast.success(
         <span className="whitespace-pre-wrap">
           Transaction success: {"\n"}
           <a
@@ -125,10 +125,8 @@ export default function MintButton({
           toast("Sorry! You're not in whitelist.");
           return;
         }
-
         const voucher = data.voucher;
         const signature = data.signature;
-
         let tx = await TOOT?.whiteListMint(voucher, signature);
         displayTransactionStatus(loadingToast, tx);
       } else {
