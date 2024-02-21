@@ -3,7 +3,6 @@ import Head from "next/head";
 import AccordingQA from "@/components/According/AccordingQA";
 import { question } from "@/constants/menuList";
 import { NFTContext } from "@/components/Provider";
-import Dapp from "@/components/contracts/Dapp";
 import ConnectBtn from "@/components/Button/ConnectBtn";
 import Box from "@/components/AE/mintPage";
 import { ethers } from "ethers";
@@ -101,7 +100,6 @@ export default function NFT() {
           <a className="text-[10px]">Join the AI-Blockchain Revolution</a>
           <a className="text-[60px] -tracking-[9px]">EIP-7007</a>
         </div>
-        <Dapp />
         <div className="z-20 mb-[35%] flex w-full flex-col items-center gap-4 text-center lg:mb-0 lg:mt-[19.5%]">
           <a className="mb-1">{`[ ${
             totalSupply ? totalSupply : "Pending . . . "
@@ -115,7 +113,7 @@ export default function NFT() {
           <a className="mt-1">· Mint price : free ·</a>
           <a>each wallet can mint 2</a>
         </div>
-        {/* <Box /> */}
+        <Box />
       </div>
       <div className="z-50 flex min-h-[100vh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] font-digital text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:bg-opacity-60 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>
