@@ -39,7 +39,7 @@ export default function NFT() {
           <a className="mt-1">· Mint price : free ·</a>
           <a>each wallet can only Mint 1</a>
         </div>
-        <Box />
+        {/* <Box /> */}
       </div>
       <div className="z-50 flex min-h-[100vh] w-[360px] flex-col gap-5 pl-[40px] pt-[50px] font-digital text-white lg:absolute lg:bottom-[60px] lg:left-[50px] lg:min-h-0 lg:bg-opacity-60 lg:p-0">
         <a className="text-[16px]">About EIP-7007</a>

@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
+//TODO:換scan網址
 
 export default function MintButton({
   title,
@@ -110,7 +111,7 @@ export default function MintButton({
       }
 
       // Check if whitelist sale has started
-      if (whitelist && (TOOTData.startTime - 12 * 3600) * 1000 > Date.now()) {
+      if (whitelist && (TOOTData.startTime - 24 * 3600) * 1000 > Date.now()) {
         toast.dismiss(loadingToast);
         toast("WhiteList sale hasn't started yet.");
         return;
@@ -126,6 +127,8 @@ export default function MintButton({
         }
         const voucher = data.voucher;
         const signature = data.signature;
+        console.log(voucher, signature);
+
         let tx = await TOOT?.whiteListMint(voucher, signature);
         displayTransactionStatus(tx);
       } else {

@@ -48,21 +48,18 @@ contract TOOT is Ownable, ERC721A, EIP712 {
         _contractURI = _newURI;
     }
 
-    function whiteListMint(NFTVoucher calldata voucher, bytes calldata signature)
-        external
-    {
+    function whiteListMint(
+        NFTVoucher calldata voucher,
+        bytes calldata signature
+    ) external {
         uint8 amount = 1;
-        require(_mintedCounts[_msgSender()] < 1, "Minted");
+        _verify(voucher, signature);
+        require(_mintedCounts[_msgSender()] < 2, "Minted");
         // Check if public minting has started
         require(
-            block.timestamp >= startTime - 12 hours,
+            block.timestamp >= startTime - 24 hours,
             "WhiteList Sale not started"
         );
-        require(
-            voucher.redeemer == _msgSender(),
-            "Voucher not for the redeemer"
-        );
-        _verify(voucher, signature);
         // check if exceed
         require(
             totalSupply() + amount <= MAX_SUPPLY,
@@ -76,7 +73,7 @@ contract TOOT is Ownable, ERC721A, EIP712 {
     /// @notice mint
     function mint() external {
         uint8 amount = 1;
-        require(_mintedCounts[_msgSender()] < 1, "Minted");
+        require(_mintedCounts[_msgSender()] < 2, "Minted");
         // Check if public minting has started
         require(block.timestamp >= startTime, "Sale not started");
         require(totalSupply() + amount <= MAX_SUPPLY, "Exceed total supply");
@@ -93,6 +90,7 @@ contract TOOT is Ownable, ERC721A, EIP712 {
             voucher.redeemer == _msgSender(),
             "Voucher not for the redeemer"
         );
+
         bytes32 digest = _hashTypedDataV4(
             keccak256(
                 abi.encode(

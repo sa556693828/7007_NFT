@@ -42,8 +42,6 @@ const ConnectBtn = () => {
   };
   const initializeEthers = async () => {
     const _provider = new ethers.providers.Web3Provider(window.ethereum);
-    // const simpleRpcProvider = new ethers.providers.JsonRpcProvider(INFURA_PRC_URL);
-    // setProvider(_provider);
     UpdateContract(_provider.getSigner(0));
   };
   const initialize = async (newAddress: any) => {
@@ -58,8 +56,6 @@ const ConnectBtn = () => {
       const [selectedAddress] = await window.ethereum.enable();
       initialize(selectedAddress);
       window.ethereum.on("accountsChanged", ([newAddress]: [string]) => {
-        //TODO:test
-        console.log("~~accountsChanged", newAddress);
         if (newAddress === undefined) {
           return resetState();
         }

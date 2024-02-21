@@ -1,6 +1,7 @@
 const { ethers } = require("hardhat");
 const { writeFile, readFile } = require("fs/promises");
 const contractAddress = require("../frontend/src/contracts/contract-address.json");
+
 const VOUCHER_TYPE = {
   NFTVoucher: [
     { name: "redeemer", type: "address" },
@@ -30,14 +31,14 @@ async function main() {
   await Promise.all(
     whitelist.map(async (list) => {
       const struct = list.split(" ");
-      const redeemer = struct[0];
+      const redeemer = struct[0].toLowerCase();
       const voucher = { redeemer };
       const signature = await signer._signTypedData(
         domainData,
         VOUCHER_TYPE,
         voucher
       );
-      sigMap.set(redeemer.toLowerCase(), { voucher, signature });
+      sigMap.set(redeemer, { voucher, signature });
       return signature;
     })
   );

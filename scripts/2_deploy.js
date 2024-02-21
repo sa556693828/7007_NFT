@@ -28,30 +28,20 @@ async function main() {
   // TinaDAO contract initial deploy params
   const name = process.env.ARG_NAME;
   const symbol = process.env.ARG_SYMBOL;
-  const maxSupply = process.env.MAX_SUPPLY;
 
   let configFile = JSON.parse(fs.readFileSync(CONFIG_PATH));
   const baseURI = configFile.UNREVEALED_BASEURI;
-  const stageId = 1;
-  const startTime = 0;
-  const endTime = getTimestamp(new Date(process.env.ARG_ENDTIME));
-  const mintPrice = parseEther("0");
+  // const startTime = 1708617600; // 2024-02-23 00:00:00 UTC+8 public sale start time
+  const startTime = 1708531200; // 2024-02-22 00:00:00 UTC+8 test time
 
-  const stageInfo = {
-    stageId,
-    maxSupply,
-    startTime,
-    endTime,
-    mintPrice,
-  };
 
   const TOOTNFT = await ethers.getContractFactory("TOOT");
 
-  const tootNFT = await TOOTNFT.deploy(name, symbol, stageInfo, baseURI);
+  const tootNFT = await TOOTNFT.deploy(name, symbol, startTime, baseURI);
 
   await tootNFT.deployed();
 
-  console.log("TinaDAO address:", tootNFT.address);
+  console.log("TOOT address:", tootNFT.address);
 
   // We also save the contract's artifacts and address in the frontend directory
   initFrontendFile();
