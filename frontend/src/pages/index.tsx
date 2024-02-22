@@ -35,7 +35,7 @@ export default function NFT() {
         network = "Sepolia";
         break;
     }
-    setErrorMsg(`Please connect Metamask to the ${network} testnet`);
+    setErrorMsg(`Please connect Metamask to the ${network}`);
     return false;
   };
   const resetState = () => {
