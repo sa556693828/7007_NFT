@@ -104,7 +104,6 @@ export default function MintButton({
   const mintToken = async (whitelist: boolean) => {
     toast.remove();
     const loadingToast = toast.loading("Minting...");
-    console.log(balance);
     try {
       if (!address || !TOOTData || !balance) return;
 
@@ -118,6 +117,12 @@ export default function MintButton({
       if (whitelist && (TOOTData.startTime - 24 * 3600) * 1000 > Date.now()) {
         toast.dismiss(loadingToast);
         toast("WhiteList sale hasn't started yet.");
+        return;
+      }
+      // Check if whitelist sale has ended
+      if (whitelist && TOOTData.startTime * 1000 <= Date.now()) {
+        toast.dismiss(loadingToast);
+        toast("WhiteList sale is over.");
         return;
       }
 
