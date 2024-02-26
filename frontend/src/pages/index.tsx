@@ -17,26 +17,28 @@ export default function NFT() {
   const [errorMsg, setErrorMsg] = useState<string>();
   const [userBalance, setUserBalance] = useState<string>();
 
-  const checkNetwork = () => {
-    //TODO: 改成net_version
-    if (window.ethereum.networkVersion === ACCEPT_NETWORK_ID) {
+  const checkNetwork = async () => {
+    const chainId = await window.ethereum.request({ method: "net_version" });
+
+    if (chainId === ACCEPT_NETWORK_ID) {
       return true;
     }
-
-    let network = "mainnet";
-    switch (ACCEPT_NETWORK_ID) {
-      case "1":
-        network = "Mainnet";
-        break;
-      case "31337":
-        network = "Hardhat";
-        break;
-      case "11155111":
-        network = "Sepolia";
-        break;
+    try {
+      // 切换到主网
+      const switchResult = await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x1" }], // 主网的链 ID
+      });
+      if (switchResult) {
+        return true;
+      } else {
+        setErrorMsg(`Please switch to Mainnet before connecting.`);
+        return false;
+      }
+    } catch (error) {
+      setErrorMsg(`Please switch to Mainnet before connecting.`);
+      return false;
     }
-    setErrorMsg(`Please switch to ${network} before connecting.`);
-    return false;
   };
   const resetState = () => {
     UpdateContract(undefined);
@@ -51,25 +53,16 @@ export default function NFT() {
     initializeEthers();
   };
   const connectWallet = async () => {
-    if (!checkNetwork()) return;
-
     try {
       //TODO: 改成eth_requestAccounts
-      const [selectedAddress] = await window.ethereum.enable();
+      const [selectedAddress] = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
       initialize(selectedAddress);
-      window.ethereum.on("accountsChanged", ([newAddress]: [string]) => {
-        if (newAddress === undefined) {
-          return resetState();
-        }
-        initialize(newAddress);
-      });
-
-      window.ethereum.on("networkChanged", ([networkId]: [string]) => {
-        if (networkId !== ACCEPT_NETWORK_ID) {
-          return resetState();
-        }
-        resetState();
-      });
+      await checkNetwork();
+      // if (!(await checkNetwork())) {
+      //   return;
+      // }
     } catch (error) {
       console.error(error);
     }
@@ -86,8 +79,25 @@ export default function NFT() {
       checkUserBalance();
       setTotalSupply(supply?.toString());
     }, 1500);
+    window.ethereum.on("accountsChanged", ([newAddress]: [string]) => {
+      if (newAddress === undefined) {
+        return resetState();
+      }
+      initialize(newAddress);
+    });
+    window.ethereum.on("chainChanged", ([networkId]: [string]) => {
+      // if (networkId !== ACCEPT_NETWORK_ID) {
+      //   return resetState();
+      // }
+      resetState();
+      window.location.reload();
+    });
 
-    return () => clearInterval(interval);
+    return () => {
+      window.ethereum.removeAllListeners("accountsChanged");
+      window.ethereum.removeAllListeners("networkChanged");
+      clearInterval(interval);
+    };
   }, [contract, selectedAddress]);
 
   return (

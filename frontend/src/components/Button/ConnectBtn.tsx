@@ -23,10 +23,7 @@ const ConnectBtn = ({
     }
     connectWallet();
 
-    return () => {
-      window.ethereum.removeAllListeners("accountsChanged");
-      window.ethereum.removeAllListeners("networkChanged");
-    };
+    return () => {};
   }, []);
 
   return (
@@ -51,12 +48,6 @@ const ConnectBtn = ({
           title="Connect Wallet"
           onClick={() => {
             connectWallet();
-            if (
-              window.ethereum.networkVersion !==
-              process.env.NEXT_PUBLIC_CHAIN_ID
-            ) {
-              toast(errorMsg as string);
-            }
           }}
         />
       )}

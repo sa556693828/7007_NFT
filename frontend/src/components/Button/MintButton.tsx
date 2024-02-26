@@ -13,6 +13,7 @@ interface Props {
 }
 
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
+const ACCEPT_NETWORK_ID = process.env.NEXT_PUBLIC_CHAIN_ID; // 31337 for hardhat local and 111333111 for Sepolia
 
 export default function MintButton({
   title,
@@ -29,6 +30,7 @@ export default function MintButton({
   }>();
   const scanWeb = process.env.NEXT_PUBLIC_SCAN_ADDRESS;
   const [whitelistData, setWhitelistData] = useState<Map<string, any>>();
+  const [loadingToast, setLoadingToast] = useState<any>();
 
   useEffect(() => {
     if (TOOT === undefined) return;
@@ -41,6 +43,12 @@ export default function MintButton({
     getContractData();
     setWhitelistData(new Map(Object.entries(WHITELIST)));
   }, [TOOT]);
+  useEffect(() => {
+    if (TOOTData === undefined) return;
+    if (TOOTData) {
+      setLoadingToast(toast.dismiss(loadingToast));
+    }
+  }, [TOOTData]);
 
   const displayTransactionStatus = async (tx: any) => {
     const txLoading = toast.loading(
@@ -103,6 +111,16 @@ export default function MintButton({
 
   const mintToken = async (whitelist: boolean) => {
     toast.remove();
+    const chainId = await window.ethereum.request({ method: "net_version" });
+    if (chainId !== ACCEPT_NETWORK_ID) {
+      toast.error("Please switch to Mainnet");
+      return;
+    }
+    if (!TOOTData) {
+      setLoadingToast(toast.loading("Waiting for get contract"));
+      return;
+    }
+
     const loadingToast = toast.loading("Minting...");
     try {
       if (!address || !TOOTData || !balance) return;
@@ -112,7 +130,6 @@ export default function MintButton({
         toast("Sale hasn't started yet");
         return;
       }
-
       // Check if whitelist sale has started
       if (whitelist && (TOOTData.startTime - 24 * 3600) * 1000 > Date.now()) {
         toast.dismiss(loadingToast);
@@ -125,7 +142,6 @@ export default function MintButton({
         toast("WhiteList sale is over.");
         return;
       }
-
       if (Number(balance) >= 2) {
         toast.dismiss(loadingToast);
         toast.error("Sorry! You can only mint 2.");
@@ -146,8 +162,6 @@ export default function MintButton({
         let tx = await TOOT?.whiteListMint(voucher, signature);
         displayTransactionStatus(tx);
       } else {
-        // For regular minting
-
         const tx = await TOOT?.mint();
         displayTransactionStatus(tx);
       }

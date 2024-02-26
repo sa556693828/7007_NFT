@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ethers } from "ethers";
 import contractAddress from "@/contracts/contract-address.json";
 import TOOTArtifact from "@/contracts/TOOT.json";
+const ACCEPT_NETWORK_ID = process.env.NEXT_PUBLIC_CHAIN_ID; // 31337 for hardhat local and 111333111 for Sepolia
 
 export const NFTContext = createContext<{
   darkMode: boolean;
@@ -51,7 +52,9 @@ export const NFTProvider = ({ children }: { children: any }) => {
   //TODO: useSWR 需要用戶connect才建立嗎？
   const UpdateContract = useCallback(
     async (singer: any) => {
-      if (!singer) {
+      const chainId = await window.ethereum.request({ method: "net_version" });
+
+      if (!singer || chainId !== ACCEPT_NETWORK_ID) {
         setTOOT(undefined);
         return;
       }
