@@ -37,17 +37,17 @@ export const NFTProvider = ({ children }: { children: any }) => {
     }
     localStorage.setItem("darkModeEnabled", darkModeEnabled.toString());
   };
-  useEffect(() => {
-    const _provider = new ethers.providers.JsonRpcProvider(
-      process.env.NEXT_PUBLIC_MAINNET_RPC_URL,
-    );
-    const contract = new ethers.Contract(
-      contractAddress.TOOT,
-      TOOTArtifact.abi,
-      _provider,
-    );
-    setContract(contract);
-  }, []);
+  // useEffect(() => {
+  //   const _provider = new ethers.providers.JsonRpcProvider(
+  //     process.env.NEXT_PUBLIC_MAINNET_RPC_URL,
+  //   );
+  //   const contract = new ethers.Contract(
+  //     contractAddress.TOOT,
+  //     TOOTArtifact.abi,
+  //     _provider,
+  //   );
+  //   setContract(contract);
+  // }, []);
 
   //TODO: useSWR 需要用戶connect才建立嗎？
   const UpdateContract = useCallback(

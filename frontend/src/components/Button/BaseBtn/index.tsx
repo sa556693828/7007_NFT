@@ -18,7 +18,8 @@ export default function BaseBtn({ title, arrow, onClick }: Props) {
         className={`${hover ? "border-buttonGr to-buttonGr shadow-buttonG" : "border-white to-white shadow-buttonW"} ml-3 mr-[18px] h-3 w-3 rounded-full border bg-gradient-to-r from-black from-25% transition-all`}
       />
       <button
-        className="h-[45px] w-[254px] border-[0.5px] border-white bg-buttonW shadow-buttonW transition-all hover:border-buttonGr hover:bg-buttonG hover:text-buttonGr hover:shadow-buttonG"
+        // className="h-[45px] w-[254px] border-[0.5px] border-white bg-buttonW shadow-buttonW transition-all hover:border-buttonGr hover:bg-buttonG hover:text-buttonGr hover:shadow-buttonG"
+        className="h-[45px] w-[300px] border-[0.5px] border-white bg-buttonW text-[14px] shadow-buttonW transition-all hover:border-buttonGr hover:bg-buttonG hover:text-buttonGr hover:shadow-buttonG lg:text-[16px]"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={onClick ? onClick : () => {}}
